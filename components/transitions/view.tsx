@@ -81,10 +81,10 @@ export default function View({
 	return (
 		<AnimatePresence mode="wait">
 			<motion.div key={pathname} className="relative p-2 h-[100dvh] w-[100vw]">
-				<motion.div {...animate(perspective)} className="bg-muted h-full rounded-2xl overflow-y-scroll w-full">
+				<motion.div {...animate(perspective)} className="bg-muted h-full rounded-2xl overflow-hidden w-full">
 					<motion.div {...animate(opacity)}>
 						<FrozenRoute>
-							<div className="absolute h-[100dvh] left-0 right-0 overflow-hidden rounded-2xl">
+							<div className="h-[100dvh] left-0 right-0 overflow-hidden overflow-y-scroll rounded-2xl">
 								<StaggeredMenu
 									isFixed={false}
 									position="right"
@@ -99,10 +99,10 @@ export default function View({
 									logoUrl="favicon.ico"
 									accentColor="#ff6b6b"
 									onMenuOpen={() => setIsOpen(true)}
-									onMenuClose={() => setIsOpen(false)}
-								/>
+									onMenuClose={() => setIsOpen(false)}>
+									{children}
+								</StaggeredMenu>
 							</div>
-							{children}
 						</FrozenRoute>
 					</motion.div>
 				</motion.div>
