@@ -371,7 +371,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 				data-open={open || undefined}>
 				<div
 					ref={preLayersRef}
-					className="sm-prelayers fixed top-0 right-0 bottom-0 pointer-events-none z-[5]"
+					className="sm-prelayers rounded-2xl fixed top-0 right-0 bottom-0 pointer-events-none z-[5]"
 					aria-hidden="true">
 					{(() => {
 						const raw = colors && colors.length ? colors.slice(0, 4) : ["#1e1e22", "#35353c"];
@@ -383,7 +383,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 						return arr.map((c, i) => (
 							<div
 								key={i}
-								className="sm-prelayer absolute  top-0 right-0 h-full w-full translate-x-0"
+								className="sm-prelayer absolute rounded-2xl top-0 right-0 h-full w-full translate-x-0"
 								style={{ background: c }}
 							/>
 						));
@@ -447,7 +447,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 				<aside
 					id="staggered-menu-panel"
 					ref={panelRef}
-					className="staggered-menu-panel fixed top-0 right-0 h-full bg-background flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px]"
+					className="staggered-menu-panel border-4 border-[#5227FF] rounded-2xl fixed top-0 right-0 h-full bg-background flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px]"
 					style={{ WebkitBackdropFilter: "blur(12px)" }}
 					aria-hidden={!open}>
 					<div className="sm-panel-inner flex-1 flex flex-col gap-5">
