@@ -80,11 +80,11 @@ export default function View({
 	];
 	return (
 		<AnimatePresence mode="wait">
-			<motion.div key={pathname} className="relative p-2 h-[100svh] w-[100vw]">
+			<motion.div key={pathname} className="relative p-2 h-[100dvh] w-[100vw]">
 				<motion.div {...animate(perspective)} className="bg-muted h-full rounded-2xl overflow-y-scroll w-full">
 					<motion.div {...animate(opacity)}>
 						<FrozenRoute>
-							<div className="absolute h-[100svh] left-0 right-0 overflow-hidden rounded-2xl">
+							<div className="absolute h-[100dvh] left-0 right-0 overflow-hidden rounded-2xl">
 								<StaggeredMenu
 									isFixed={false}
 									position="right"
@@ -108,7 +108,7 @@ export default function View({
 				</motion.div>
 				<motion.div
 					{...animate(slide)}
-					className="fixed p-2 bg-clip-content h-[100svh] rounded-3xl top-0 left-0 bg-muted  w-full"
+					className="fixed p-2 bg-clip-content h-[100dvh] rounded-3xl top-0 left-0 bg-muted  w-full"
 				/>
 			</motion.div>
 		</AnimatePresence>
