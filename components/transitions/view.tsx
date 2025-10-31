@@ -95,7 +95,7 @@ export default function View({
                             <div className="right-0 left-0 h-[100dvh] overflow-hidden overflow-y-scroll rounded-2xl">
                                 <StaggeredMenu
                                     isFixed={false}
-                                    position="left"
+                                    position="right"
                                     items={menuItems}
                                     socialItems={socialItems}
                                     displaySocials={true}
