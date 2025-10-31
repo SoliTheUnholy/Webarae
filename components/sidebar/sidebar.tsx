@@ -515,7 +515,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                             >
                                 {textLines.map((l, i) => (
                                     <span
-                                        className="sm-toggle-line block h-[1em] leading-none"
+                                        className="sm-toggle-line block p-[1px] h-[1em] leading-none"
                                         key={i}
                                     >
                                         {l}
