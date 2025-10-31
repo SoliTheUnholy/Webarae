@@ -5,11 +5,11 @@ import Link from "next/link";
 export default function Contact() {
     return (
         <>
-            <div className="fixed h-screen w-screen to-emerald-950">
+            <div className="fixed h-screen w-screen">
                 <Silk
                     speed={5}
                     scale={1}
-                    color="#002c22"
+                    color="#461901"
                     noiseIntensity={1.5}
                     rotation={0}
                 />

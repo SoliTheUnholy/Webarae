@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { AnimatePresence, delay, motion, scale } from "framer-motion";
-import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useContext, useRef, useState } from "react";
+import { useState } from "react";
 import FrozenRoute from "./frozen";
 import StaggeredMenu from "../sidebar/sidebar";
 
@@ -96,7 +95,7 @@ export default function View({
                             <div className="right-0 left-0 h-[100dvh] overflow-hidden overflow-y-scroll rounded-2xl">
                                 <StaggeredMenu
                                     isFixed={false}
-                                    position="right"
+                                    position="left"
                                     items={menuItems}
                                     socialItems={socialItems}
                                     displaySocials={true}

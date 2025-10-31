@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function About() {
 	return (
         <>
-            <div className="fixed h-screen w-screen to-cyan-950">
+            <div className="fixed h-screen w-screen">
                 <Silk
                     speed={5}
                     scale={1}

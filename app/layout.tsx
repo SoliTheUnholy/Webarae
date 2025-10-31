@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html dir="rtl" lang="en" suppressHydrationWarning>
       <body className={`bg-background antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <View>{children}</View>
