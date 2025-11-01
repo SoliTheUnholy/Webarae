@@ -73,6 +73,7 @@ export default function View({
         { label: "خانه", ariaLabel: "Go to home page", link: "/" },
         { label: "درباره ما", ariaLabel: "Learn about us", link: "/about" },
         { label: "تماس با ما", ariaLabel: "Get in touch", link: "/contact" },
+        { label: "فرم میکسر", ariaLabel: "Get in touch", link: "/mixer" },
     ];
 
     const socialItems = [
