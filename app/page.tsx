@@ -10,7 +10,7 @@ export default function Home() {
                 <Silk
                     speed={5}
                     scale={1}
-                    color="#461901"
+                    color="#5A5A5A"
                     noiseIntensity={1.5}
                     rotation={0}
                 />

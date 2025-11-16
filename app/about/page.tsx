@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function About() {
-	return (
+    return (
         <>
             <div className="fixed h-screen w-screen">
                 <Silk
                     speed={5}
                     scale={1}
-                    color="#461901"
+                    color="#5A5A5A"
                     noiseIntensity={1.5}
                     rotation={0}
                 />

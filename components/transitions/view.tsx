@@ -74,6 +74,7 @@ export default function View({
         { label: "درباره ما", ariaLabel: "Learn about us", link: "/about" },
         { label: "تماس با ما", ariaLabel: "Get in touch", link: "/contact" },
         { label: "فرم میکسر", ariaLabel: "Get in touch", link: "/mixer" },
+        { label: "سمپل", ariaLabel: "Get in touch", link: "/components-preview" },
     ];
 
     const socialItems = [
@@ -89,11 +90,11 @@ export default function View({
             >
                 <motion.div
                     {...animate(perspective)}
-                    className="bg-muted h-full w-full overflow-hidden rounded-2xl"
+                    className="bg-muted h-full w-full overflow-hidden rounded-3xl"
                 >
                     <motion.div {...animate(opacity)}>
                         <FrozenRoute>
-                            <div className="right-0 left-0 h-[100dvh] overflow-hidden overflow-y-scroll rounded-2xl">
+                            <div className="right-0 left-0 h-[100dvh] overflow-hidden overflow-y-scroll rounded-3xl">
                                 <StaggeredMenu
                                     isFixed={false}
                                     position="right"
