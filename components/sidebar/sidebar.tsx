@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import LoginButton from "../login/login-button";
+import GlassButton from "../glass-button/glass-button";
 
 export interface StaggeredMenuItem {
     label: string;
@@ -468,7 +469,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         return arr.map((c, i) => (
                             <div
                                 key={i}
-                                className="sm-prelayer absolute top-0 right-0 h-full w-full translate-x-0"
+                                className="sm-prelayer fixed top-0 right-0 h-full w-full translate-x-0"
                                 style={{ background: c }}
                             />
                         ));
@@ -476,20 +477,19 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 </div>
 
                 <header
-                    className="staggered-menu-header bg-sidebar pointer-events-none fixed top-0 left-0 z-20 flex w-full items-center justify-between p-2"
+                    className="staggered-menu-header pointer-events-none fixed top-0 left-0 z-20 flex w-full items-center justify-between p-2"
                     aria-label="Main navigation header"
                 >
                     <div className="pointer-events-auto flex h-9 items-center justify-center gap-1 select-none">
-                        <Button
+                        <GlassButton
                             ref={toggleBtnRef}
-                            className={`sm-toggle pointer-events-auto relative inline-flex h-9 cursor-pointer items-center gap-1 overflow-visible border-0 pr-1 pl-3 leading-none font-medium ${
+                            className={`sm-toggle pointer-events-auto relative inline-flex h-9 cursor-pointer items-center gap-1 overflow-visible pr-1 pl-3 leading-none font-medium ${
                                 open ? "text-foreground" : "text-background"
                             }`}
                             aria-label={open ? "Close menu" : "Open menu"}
                             aria-expanded={open}
                             aria-controls="staggered-menu-panel"
                             onClick={toggleMenu}
-                            variant={"ghost"}
                             type="button"
                         >
                             <span
@@ -526,15 +526,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                     ))}
                                 </span>
                             </span>
-                        </Button>
+                        </GlassButton>
                         <Separator orientation="vertical" />
                         <LoginButton />
                     </div>
                     <div className="pointer-events-auto flex h-9 items-center justify-center gap-1 select-none">
                         <Link href={"./"}>
-                            <Button variant={"ghost"} className="">
-                                آی بتن
-                            </Button>
+                            <GlassButton className="">آی بتن</GlassButton>
                         </Link>
                         <Separator orientation="vertical" />
                         <ThemeToggle />
@@ -628,7 +626,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
 .sm-scope .sm-logo-img { display: block; height: 32px; width: auto; object-fit: contain; }
-.sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 6px;  border: none; cursor: pointer;  line-height: 1; overflow: visible; }
+.sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 6px;   cursor: pointer;  line-height: 1; overflow: visible; }
 .sm-scope .sm-toggle:focus-visible { outline: 2px solid #ffffffaa; outline-offset: 4px; border-radius: 4px; }
 .sm-scope .sm-line:last-of-type { margin-top: 6px; }
 .sm-scope .sm-toggle-textWrap { position: relative; margin-right: 0.5em; display: inline-block; height: 1em; overflow: hidden; white-space: nowrap; width: var(--sm-toggle-width, auto); min-width: var(--sm-toggle-width, auto); }
