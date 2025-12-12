@@ -100,7 +100,7 @@ export function MixerForm() {
                                         {...field}
                                         id="form-rhf-input-title"
                                         aria-invalid={fieldState.invalid}
-                                        placeholder="آی بتن"
+                                        placeholder="وبارای"
                                         autoComplete="title"
                                     />
                                     <FieldDescription>

@@ -1,4 +1,5 @@
-import GlassButton from "@/components/glass-button/glass-button";
+import LensIconButton from "@/components/glass-button/glass-button";
+import Button from "@/components/glass-button/glass-button";
 import Silk from "@/components/silk/silk";
 import { div } from "framer-motion/client";
 import Image from "next/image";
