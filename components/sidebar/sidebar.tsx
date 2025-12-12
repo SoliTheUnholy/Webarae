@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import LoginButton from "../login/login-button";
+import LiquidButton from "../glass-button/glass-button";
 
 export interface StaggeredMenuItem {
     label: string;
@@ -482,6 +483,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     <div className="pointer-events-auto flex h-9 items-center justify-center gap-1 select-none">
                         <Button
                             ref={toggleBtnRef}
+                            variant="link"
                             className={`sm-toggle pointer-events-auto relative inline-flex h-9 cursor-pointer items-center gap-1 overflow-visible pr-1 pl-3 leading-none font-medium ${
                                 open ? "text-foreground" : "text-background"
                             }`}
@@ -491,6 +493,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                             onClick={toggleMenu}
                             type="button"
                         >
+                            <LiquidButton>
                             <span
                                 ref={iconRef}
                                 className="sm-icon relative inline-flex h-4 w-4 shrink-0 items-center justify-center [will-change:transform]"
@@ -525,15 +528,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                     ))}
                                 </span>
                             </span>
+                            </LiquidButton>
                         </Button>
                         <Separator orientation="vertical" />
                         <LoginButton />
                     </div>
                     <div className="pointer-events-auto flex h-9 items-center justify-center gap-1 select-none">
-                        <Link href={"./"}>
-                            <Button className="">وبارای</Button>
-                        </Link>
-                        <Separator orientation="vertical" />
                         <ThemeToggle />
                     </div>
                 </header>
