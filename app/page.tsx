@@ -1,3 +1,4 @@
+import LiquidButton from "@/components/glass-button/glass-button";
 import LensIconButton from "@/components/glass-button/glass-button";
 import Button from "@/components/glass-button/glass-button";
 import Silk from "@/components/silk/silk";
@@ -11,7 +12,7 @@ export default function Home() {
             <div className="fixed h-screen w-screen">
                 <Silk
                     speed={5}
-                    scale={1}
+                    scale={2}
                     color="#5A5A5A"
                     noiseIntensity={1.5}
                     rotation={0}

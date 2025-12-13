@@ -481,19 +481,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     aria-label="Main navigation header"
                 >
                     <div className="pointer-events-auto flex h-9 items-center justify-center gap-1 select-none">
-                        <Button
-                            ref={toggleBtnRef}
-                            variant="link"
-                            className={`sm-toggle pointer-events-auto relative inline-flex h-9 cursor-pointer items-center gap-1 overflow-visible pr-1 pl-3 leading-none font-medium ${
-                                open ? "text-foreground" : "text-background"
-                            }`}
+                        <LiquidButton
+                        
+                            ref={toggleBtnRef}                            
                             aria-label={open ? "Close menu" : "Open menu"}
                             aria-expanded={open}
                             aria-controls="staggered-menu-panel"
                             onClick={toggleMenu}
-                            type="button"
                         >
-                            <LiquidButton>
                             <span
                                 ref={iconRef}
                                 className="sm-icon relative inline-flex h-4 w-4 shrink-0 items-center justify-center [will-change:transform]"
@@ -528,8 +523,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                     ))}
                                 </span>
                             </span>
-                            </LiquidButton>
-                        </Button>
+                        </LiquidButton>
                         <Separator orientation="vertical" />
                         <LoginButton />
                     </div>

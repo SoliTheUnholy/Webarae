@@ -1,6 +1,26 @@
-import { createImageData } from 'canvas';
 import { MotionValue } from 'motion';
-
+function createImageData(width: number, height: number): ImageData {
+    // Check if we're in a browser environment
+    if (typeof window !== 'undefined' && typeof ImageData !== 'undefined') {
+        // Browser: use native ImageData constructor
+        return new ImageData(width, height);
+    }
+    
+    // For SSR or environments without ImageData, create a compatible object
+    // Create the data array
+    const data = new Uint8ClampedArray(width * height * 4);
+    
+    // Return an object that matches ImageData interface
+    // This works in both browser and Node.js
+    const imageData = {
+        data: data,
+        width: width,
+        height: height,
+        colorSpace: 'srgb' as PredefinedColorSpace,
+    } as ImageData;
+    
+    return imageData;
+}
 function calculateRefractionProfile(
     glassThickness: number = 200,
     bezelWidth: number = 50,

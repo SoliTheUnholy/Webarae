@@ -1,18 +1,20 @@
+"use client";
 import React from "react";
-import { Button } from "../ui/button";
 import { User } from "lucide-react";
-import Link from "next/link";
-import GlassButton from "../glass-button/glass-button";
 import LiquidButton from "../glass-button/glass-button";
+import { useRouter } from "next/navigation";
 
 const LoginButton = () => {
+    const router = useRouter();
     return (
-        <Link href={"./login"}>
-            <LiquidButton>
-                <User className="h-4 w-4 stroke-3" />
-                <span className="-mt-[6px]">ورود</span>
-            </LiquidButton>
-        </Link>
+        <LiquidButton
+            onClick={() => {
+                router.push("/login");
+            }}
+        >
+            <User className="h-4 w-4 stroke-3" />
+            <span className="sr-only">login</span>
+        </LiquidButton>
     );
 };
 

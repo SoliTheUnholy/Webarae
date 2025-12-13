@@ -1,4 +1,4 @@
-import { createCanvas, type ImageData } from 'canvas';
+"use client"
 import { motion, MotionValue, useTransform } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { getDisplacementData } from '@/lib/liquid-lib';
@@ -28,7 +28,16 @@ import { CONVEX } from '@/lib/liquid-lib';
 // }
 
 function imageDataToUrl(imageData: ImageData): string {
-    const canvas = createCanvas(imageData.width, imageData.height);
+    // Guard against SSR - return placeholder data URL during SSR
+    if (typeof document === 'undefined') {
+        // Return a transparent 1x1 pixel data URL as placeholder
+        return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+    }
+    
+    // Browser-compatible canvas creation
+    const canvas = document.createElement('canvas');
+    canvas.width = imageData.width;
+    canvas.height = imageData.height;
     const ctx = canvas.getContext('2d');
     if (!ctx) {
         throw new Error('Failed to get canvas context');
