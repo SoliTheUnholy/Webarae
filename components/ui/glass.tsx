@@ -1,8 +1,20 @@
-"use client"
-import { cn } from '@/lib/utils';
-import { motion, MotionValue, useMotionValue, useSpring, type HTMLMotionProps } from 'motion/react';
-import React, { useCallback, useEffect, useId, useLayoutEffect, useRef } from 'react';
-import { LiquidFilter, LiquidFilterProps } from './filter';
+"use client";
+import { cn } from "@/lib/utils";
+import {
+    motion,
+    MotionValue,
+    useMotionValue,
+    useSpring,
+    type HTMLMotionProps,
+} from "motion/react";
+import React, {
+    useCallback,
+    useEffect,
+    useId,
+    useLayoutEffect,
+    useRef,
+} from "react";
+import { LiquidFilter, LiquidFilterProps } from "./filter";
 
 /**
  * Safely parse border radius from computed styles, handling edge cases like
@@ -13,7 +25,7 @@ const getBorderRadius = (element: HTMLElement, rect: DOMRect): number => {
     const computedStyle = getComputedStyle(element);
     const rawRadius = computedStyle.borderRadius;
 
-    if (!rawRadius || rawRadius === '0px') {
+    if (!rawRadius || rawRadius === "0px") {
         return 0;
     }
 
@@ -24,7 +36,11 @@ const getBorderRadius = (element: HTMLElement, rect: DOMRect): number => {
     }
 
     // Handle scientific notation (e.g., '1.67772e+07px' from rounded-full) or very large values
-    if (parsedRadius > 9999 || rawRadius.includes('e+') || rawRadius.includes('E+')) {
+    if (
+        parsedRadius > 9999 ||
+        rawRadius.includes("e+") ||
+        rawRadius.includes("E+")
+    ) {
         // For very large values (like rounded-full), return half of smallest dimension
         return Math.min(rect.width, rect.height) / 2;
     }
@@ -34,7 +50,7 @@ const getBorderRadius = (element: HTMLElement, rect: DOMRect): number => {
 
 const useMotionSizeObservers = <T extends HTMLElement = HTMLDivElement>(
     containerRef: React.RefObject<T | null>,
-    disabled: boolean = false
+    disabled: boolean = false,
 ) => {
     // Use motion values with built-in spring animations and safe initial values
     // Lower stiffness and higher damping to prevent oscillations
@@ -105,7 +121,7 @@ const useMotionSizeObservers = <T extends HTMLElement = HTMLDivElement>(
 
         mutationObserver.observe(containerRef.current, {
             attributes: true,
-            attributeFilter: ['style', 'class'],
+            attributeFilter: ["style", "class"],
         });
 
         return () => {
@@ -124,14 +140,14 @@ const useMotionSizeObservers = <T extends HTMLElement = HTMLDivElement>(
 export interface LiquidGlassProps<T extends HTMLElement = HTMLDivElement>
     extends Pick<
         LiquidFilterProps,
-        | 'glassThickness'
-        | 'bezelWidth'
-        | 'blur'
-        | 'bezelHeightFn'
-        | 'refractiveIndex'
-        | 'specularOpacity'
-        | 'specularSaturation'
-        | 'dpr'
+        | "glassThickness"
+        | "bezelWidth"
+        | "blur"
+        | "bezelHeightFn"
+        | "refractiveIndex"
+        | "specularOpacity"
+        | "specularSaturation"
+        | "dpr"
     > {
     targetRef?: React.RefObject<T | null>;
     width?: MotionValue<number>;
@@ -164,7 +180,13 @@ export const useLiquidSurface = <T extends HTMLElement = HTMLDivElement>({
     const finalRadius = usePropValues ? borderRadiusProp : observedRadius;
 
     const Filter = () => (
-        <LiquidFilter id={filterId} width={finalWidth} height={finalHeight} radius={finalRadius} {...props} />
+        <LiquidFilter
+            id={filterId}
+            width={finalWidth}
+            height={finalHeight}
+            radius={finalRadius}
+            {...props}
+        />
     );
 
     const filterStyles: React.CSSProperties = {
@@ -175,7 +197,9 @@ export const useLiquidSurface = <T extends HTMLElement = HTMLDivElement>({
     return { filterId, filterStyles, ref, Filter };
 };
 
-export const LiquidGlass: React.FC<LiquidGlassProps & HTMLMotionProps<'div'>> = ({
+export const LiquidGlass: React.FC<
+    LiquidGlassProps & HTMLMotionProps<"div">
+> = ({
     children,
     glassThickness,
     bezelWidth,
@@ -184,7 +208,7 @@ export const LiquidGlass: React.FC<LiquidGlassProps & HTMLMotionProps<'div'>> = 
     refractiveIndex,
     specularOpacity,
     specularSaturation,
-    dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1,
+    dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1,
     targetRef,
     width,
     height,
@@ -232,48 +256,57 @@ export const LiquidGlass: React.FC<LiquidGlassProps & HTMLMotionProps<'div'>> = 
     );
 };
 
-const LiquidDiv = React.forwardRef<HTMLDivElement, { filterId: string } & HTMLMotionProps<'div'>>(
-    ({ children, filterId, className, ...props }, ref) => {
-        const isLiquidSupported = useMotionValue(false);
+const LiquidDiv = React.forwardRef<
+    HTMLDivElement,
+    { filterId: string } & HTMLMotionProps<"div">
+>(({ children, filterId, className, ...props }, ref) => {
+    const isLiquidSupported = useMotionValue(false);
 
-        const supportsSVGFilters = useCallback(() => {
-            const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-            const isFirefox = /Firefox/.test(navigator.userAgent);
+    const supportsSVGFilters = useCallback(() => {
+        const isWebkit =
+            /Safari/.test(navigator.userAgent) &&
+            !/Chrome/.test(navigator.userAgent);
+        const isFirefox = /Firefox/.test(navigator.userAgent);
 
-            if (isWebkit || isFirefox) {
-                return false;
-            }
+        if (isWebkit || isFirefox) {
+            return false;
+        }
 
-            const div = document.createElement('div');
-            div.style.backdropFilter = `url(#${filterId})`;
-            return div.style.backdropFilter !== '';
-        }, [filterId]);
+        const div = document.createElement("div");
+        div.style.backdropFilter = `url(#${filterId})`;
+        return div.style.backdropFilter !== "";
+    }, [filterId]);
 
-        useEffect(() => {
-            const svgSupported = supportsSVGFilters();
-            if (svgSupported && typeof document !== 'undefined') {
-                isLiquidSupported.set(true);
-            }
-        }, []);
+    useEffect(() => {
+        const svgSupported = supportsSVGFilters();
+        if (svgSupported && typeof document !== "undefined") {
+            isLiquidSupported.set(true);
+        }
+    }, []);
 
-        return (
-            <motion.div
-                ref={ref}
-                {...props}
-                className={cn('bg-white/5', isLiquidSupported ? '' : 'border', className)}
-                style={{
-                    boxShadow: '0 3px 14px rgba(0,0,0,0.1)',
-                    ...props.style,
-                    ...(isLiquidSupported
-                        ? {}
-                        : {
-                              backdropFilter: 'blur(4px)',
-                              WebkitBackdropFilter: 'blur(4px)',
-                          }),
-                }}
-            >
-                {children}
-            </motion.div>
-        );
-    }
-);
+    return (
+        <motion.div
+            ref={ref}
+            {...props}
+            className={cn(
+                "bg-white/5",
+                isLiquidSupported ? "" : "border",
+                className,
+            )}
+            style={{
+                boxShadow: "0 3px 14px rgba(0,0,0,0.1)",
+                ...props.style,
+                ...(isLiquidSupported
+                    ? {}
+                    : {
+                          backdropFilter: "blur(4px)",
+                          WebkitBackdropFilter: "blur(4px)",
+                      }),
+            }}
+        >
+            {children}
+        </motion.div>
+    );
+});
+
+LiquidDiv.displayName = "LiquidDiv";
