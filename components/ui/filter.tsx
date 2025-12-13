@@ -1,5 +1,3 @@
-'use client';
-
 import { createCanvas, type ImageData } from 'canvas';
 import { motion, MotionValue, useTransform } from 'motion/react';
 import { useEffect, useState } from 'react';

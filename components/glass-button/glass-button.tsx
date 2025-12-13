@@ -1,3 +1,4 @@
+"use client"
 import { LiquidGlass } from '@/components/ui/glass';
 
 export default function LiquidButton({children, onClick}: {children:React.ReactNode, onClick?: () => void}){
