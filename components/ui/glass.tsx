@@ -153,6 +153,7 @@ export interface LiquidGlassProps<T extends HTMLElement = HTMLDivElement>
     width?: MotionValue<number>;
     height?: MotionValue<number>;
     borderRadius?: MotionValue<number>;
+    onReady?: () => void;
 }
 
 export const useLiquidSurface = <T extends HTMLElement = HTMLDivElement>({
@@ -200,6 +201,7 @@ export const useLiquidSurface = <T extends HTMLElement = HTMLDivElement>({
 export const LiquidGlass: React.FC<
     LiquidGlassProps & HTMLMotionProps<"div">
 > = ({
+    onReady,
     children,
     glassThickness,
     bezelWidth,
@@ -248,6 +250,7 @@ export const LiquidGlass: React.FC<
                     }}
                     filterId={filterId}
                     ref={ref}
+                    onReady={onReady}
                 >
                     {children}
                 </LiquidDiv>
@@ -258,8 +261,8 @@ export const LiquidGlass: React.FC<
 
 const LiquidDiv = React.forwardRef<
     HTMLDivElement,
-    { filterId: string } & HTMLMotionProps<"div">
->(({ children, filterId, className, ...props }, ref) => {
+    { filterId: string; onReady?: () => void } & HTMLMotionProps<"div">
+>(({ children, filterId, onReady, className, ...props }, ref) => {
     const isLiquidSupported = useMotionValue(false);
 
     const supportsSVGFilters = useCallback(() => {
@@ -281,20 +284,23 @@ const LiquidDiv = React.forwardRef<
         const svgSupported = supportsSVGFilters();
         if (svgSupported && typeof document !== "undefined") {
             isLiquidSupported.set(true);
+            requestAnimationFrame(() => {
+                onReady?.();
+            });
         }
-    }, []);
+    }, [supportsSVGFilters, onReady]);
 
     return (
         <motion.div
             ref={ref}
             {...props}
             className={cn(
-                "bg-white/5",
-                isLiquidSupported ? "" : "border",
+                "bg-background/25",
+                isLiquidSupported ? "" : "border-2",
                 className,
             )}
             style={{
-                boxShadow: "0 3px 14px rgba(0,0,0,0.1)",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                 ...props.style,
                 ...(isLiquidSupported
                     ? {}

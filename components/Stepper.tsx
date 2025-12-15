@@ -337,7 +337,7 @@ function StepIndicator({
                 className="flex h-8 w-8 items-center justify-center rounded-full font-semibold"
             >
                 {status === "complete" ? (
-                    <CheckIcon className="text-background h-4 w-4" />
+                    <CheckIcon className="text-background h-5 w-5" />
                 ) : status === "active" ? (
                     <div className="bg-background h-3 w-3 rounded-full" />
                 ) : (

@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import LoginButton from "../login/login-button";
 import LiquidButton from "../glass-button/glass-button";
+import { Cross, Menu, X } from "lucide-react";
 
 export interface StaggeredMenuItem {
     label: string;
@@ -51,7 +52,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     displaySocials = true,
     displayItemNumbering = true,
     className,
-    logoUrl = "/src/assets/logos/reactbits-gh-white.svg",
+    logoUrl = "/src/",
     menuButtonColor = "var(--foreground)",
     openMenuButtonColor = "var(--foreground)",
     changeMenuColorOnOpen = true,
@@ -67,14 +68,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     const preLayersRef = useRef<HTMLDivElement | null>(null);
     const preLayerElsRef = useRef<HTMLElement[]>([]);
 
-    const plusHRef = useRef<HTMLSpanElement | null>(null);
-    const plusVRef = useRef<HTMLSpanElement | null>(null);
-    const iconRef = useRef<HTMLSpanElement | null>(null);
-
-    const textInnerRef = useRef<HTMLSpanElement | null>(null);
-    const textWrapRef = useRef<HTMLSpanElement | null>(null);
-    const [textLines, setTextLines] = useState<string[]>(["منو", "بستن"]);
-
     const openTlRef = useRef<gsap.core.Timeline | null>(null);
     const closeTweenRef = useRef<gsap.core.Tween | null>(null);
     const spinTweenRef = useRef<gsap.core.Timeline | null>(null);
@@ -83,6 +76,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
     const busyRef = useRef(false);
+    const menuIconRef = useRef<SVGSVGElement | null>(null);
+    const crossIconRef = useRef<SVGSVGElement | null>(null);
+    const iconAnimRef = useRef<gsap.core.Timeline | null>(null);
 
     const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
 
@@ -91,12 +87,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             const panel = panelRef.current;
             const preContainer = preLayersRef.current;
 
-            const plusH = plusHRef.current;
-            const plusV = plusVRef.current;
-            const icon = iconRef.current;
-            const textInner = textInnerRef.current;
-
-            if (!panel || !plusH || !plusV || !icon || !textInner) return;
+            if (!panel) return;
 
             let preLayers: HTMLElement[] = [];
             if (preContainer) {
@@ -109,14 +100,24 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             const offscreen = position === "left" ? -100 : 100;
             gsap.set([panel, ...preLayers], { xPercent: offscreen });
 
-            gsap.set(plusH, { transformOrigin: "50% 50%", rotate: 0 });
-            gsap.set(plusV, { transformOrigin: "50% 50%", rotate: 90 });
-            gsap.set(icon, { rotate: 0, transformOrigin: "50% 50%" });
-
-            gsap.set(textInner, { yPercent: 0 });
-
             if (toggleBtnRef.current)
                 gsap.set(toggleBtnRef.current, { color: menuButtonColor });
+
+            // Initialize icon states
+            if (menuIconRef.current) {
+                gsap.set(menuIconRef.current, {
+                    rotation: 0,
+                    scale: 1,
+                    opacity: 1,
+                });
+            }
+            if (crossIconRef.current) {
+                gsap.set(crossIconRef.current, {
+                    rotation: 0,
+                    scale: 0,
+                    opacity: 0,
+                });
+            }
         });
         return () => ctx.revert();
     }, [menuButtonColor, position]);
@@ -309,30 +310,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         });
     }, [position]);
 
-    const animateIcon = useCallback((opening: boolean) => {
-        const icon = iconRef.current;
-        const h = plusHRef.current;
-        const v = plusVRef.current;
-        if (!icon || !h || !v) return;
-
-        spinTweenRef.current?.kill();
-
-        if (opening) {
-            // ensure container never rotates
-            gsap.set(icon, { rotate: 0, transformOrigin: "50% 50%" });
-            spinTweenRef.current = gsap
-                .timeline({ defaults: { ease: "power4.out" } })
-                .to(h, { rotate: 45, duration: 0.5 }, 0)
-                .to(v, { rotate: -45, duration: 0.5 }, 0);
-        } else {
-            spinTweenRef.current = gsap
-                .timeline({ defaults: { ease: "power3.inOut" } })
-                .to(h, { rotate: 0, duration: 0.35 }, 0)
-                .to(v, { rotate: 90, duration: 0.35 }, 0)
-                .to(icon, { rotate: 0, duration: 0.001 }, 0);
-        }
-    }, []);
-
     const animateColor = useCallback(
         (opening: boolean) => {
             const btn = toggleBtnRef.current;
@@ -368,37 +345,61 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         }
     }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
 
-    const animateText = useCallback((opening: boolean) => {
-        const inner = textInnerRef.current;
-        if (!inner) return;
+    // Animate icon swap between menu and cross
+    React.useEffect(() => {
+        const menuIcon = menuIconRef.current;
+        const crossIcon = crossIconRef.current;
 
-        textCycleAnimRef.current?.kill();
+        if (!menuIcon || !crossIcon) return;
 
-        const currentLabel = opening ? "منو" : "بستن";
-        const targetLabel = opening ? "بستن" : "منو";
-        const cycles = 3;
+        iconAnimRef.current?.kill();
 
-        const seq: string[] = [currentLabel];
-        let last = currentLabel;
-        for (let i = 0; i < cycles; i++) {
-            last = last === "منو" ? "بستن" : "منو";
-            seq.push(last);
+        if (open) {
+            // Animate to cross: menu rotates and scales out, cross rotates and scales in
+            iconAnimRef.current = gsap.timeline();
+            iconAnimRef.current
+                .to(menuIcon, {
+                    rotation: 90,
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.inOut",
+                })
+                .to(
+                    crossIcon,
+                    {
+                        rotation: 0,
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.3,
+                        ease: "power2.inOut",
+                    },
+                    "-=0.15",
+                ); // Start slightly before menu finishes
+        } else {
+            // Animate to menu: cross rotates and scales out, menu rotates and scales in
+            iconAnimRef.current = gsap.timeline();
+            iconAnimRef.current
+                .to(crossIcon, {
+                    rotation: -90,
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.inOut",
+                })
+                .to(
+                    menuIcon,
+                    {
+                        rotation: 0,
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.3,
+                        ease: "power2.inOut",
+                    },
+                    "-=0.15",
+                ); // Start slightly before cross finishes
         }
-        if (last !== targetLabel) seq.push(targetLabel);
-        seq.push(targetLabel);
-
-        setTextLines(seq);
-        gsap.set(inner, { yPercent: 0 });
-
-        const lineCount = seq.length;
-        const finalShift = ((lineCount - 1) / lineCount) * 100;
-
-        textCycleAnimRef.current = gsap.to(inner, {
-            yPercent: -finalShift,
-            duration: 0.5 + lineCount * 0.07,
-            ease: "power4.out",
-        });
-    }, []);
+    }, [open]);
 
     const toggleMenu = useCallback(() => {
         const target = !openRef.current;
@@ -413,18 +414,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             playClose();
         }
 
-        animateIcon(target);
         animateColor(target);
-        animateText(target);
-    }, [
-        playOpen,
-        playClose,
-        animateIcon,
-        animateColor,
-        animateText,
-        onMenuOpen,
-        onMenuClose,
-    ]);
+    }, [playOpen, playClose, animateColor, onMenuOpen, onMenuClose]);
 
     return (
         <div
@@ -482,47 +473,22 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 >
                     <div className="pointer-events-auto flex h-12 items-center justify-center gap-1 select-none">
                         <LiquidButton
-                        
-                            ref={toggleBtnRef}                            
+                            ref={toggleBtnRef}
                             aria-label={open ? "Close menu" : "Open menu"}
                             aria-expanded={open}
                             aria-controls="staggered-menu-panel"
                             onClick={toggleMenu}
                         >
-                            <span
-                                ref={iconRef}
-                                className="sm-icon relative inline-flex h-4 w-4 shrink-0 items-center justify-center [will-change:transform]"
-                                aria-hidden="true"
-                            >
-                                <span
-                                    ref={plusHRef}
-                                    className="sm-icon-line absolute top-1/2 left-1/2 h-[2px] w-full -translate-x-1/2 -translate-y-1/2 rounded-[2px] bg-current [will-change:transform]"
+                            <div className="relative h-5 w-5">
+                                <Menu
+                                    ref={menuIconRef}
+                                    className="absolute inset-0 h-5 w-5 stroke-3"
                                 />
-                                <span
-                                    ref={plusVRef}
-                                    className="sm-icon-line sm-icon-line-v absolute top-1/2 left-1/2 h-[2px] w-full -translate-x-1/2 -translate-y-1/2 rounded-[2px] bg-current [will-change:transform]"
+                                <X
+                                    ref={crossIconRef}
+                                    className="absolute inset-0 h-5 w-5 stroke-3"
                                 />
-                            </span>
-
-                            <span
-                                ref={textWrapRef}
-                                className="sm-toggle-textWrap relative inline-block h-[1em] w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)] overflow-hidden whitespace-nowrap"
-                                aria-hidden="true"
-                            >
-                                <span
-                                    ref={textInnerRef}
-                                    className="sm-toggle-textInner -mt-1 flex flex-col leading-none"
-                                >
-                                    {textLines.map((l, i) => (
-                                        <span
-                                            className="sm-toggle-line block h-[1em] p-[1px] leading-none"
-                                            key={i}
-                                        >
-                                            {l}
-                                        </span>
-                                    ))}
-                                </span>
-                            </span>
+                            </div>
                         </LiquidButton>
                         <Separator orientation="vertical" />
                         <LoginButton />

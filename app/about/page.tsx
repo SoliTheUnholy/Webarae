@@ -8,8 +8,8 @@ export default function About() {
             <div className="fixed h-screen w-screen">
                 <Silk
                     speed={5}
-                    scale={1}
-                    color="#5A5A5A"
+                    scale={2}
+                    color="#104e64"
                     noiseIntensity={1.5}
                     rotation={0}
                 />
