@@ -1,9 +1,5 @@
 "use client";
 import ColorBends from "@/components/ColorBends";
-import { MixerForm } from "@/components/forms/mixer-form";
-import FluidGlass from "@/components/glass-button/glass-button";
-import Silk from "@/components/silk/silk";
-import { Button } from "@/components/ui/button";
 import React, { useRef } from "react";
 
 export default function Login() {

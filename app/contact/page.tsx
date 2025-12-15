@@ -1,23 +1,21 @@
-import Antigravity from "@/components/Antigravity";
+import Silk from "@/components/silk/silk";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Contact() {
     return (
         <>
             <div className="fixed h-screen w-screen">
-                <Antigravity
-                    count={1000}
-                    magnetRadius={7}
-                    ringRadius={7}
-                    waveSpeed={0.6}
-                    waveAmplitude={1}
-                    particleSize={1}
-                    lerpSpeed={0.05}
-                    color={"#104e64"}
-                    autoAnimate={true}
-                    particleVariance={1}
+                <Silk
+                    speed={5}
+                    scale={2}
+                    color="#104e64"
+                    noiseIntensity={1.5}
+                    rotation={0}
                 />
             </div>
-            <div className="absolute"></div>
+            <div className="absolute">
+            </div>
         </>
     );
 }
