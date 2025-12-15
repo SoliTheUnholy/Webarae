@@ -20,6 +20,7 @@ export default function Login() {
                 chromaticAberration={0.005}
                 noiseIntensity={0.01}
             />
+            
             </div>
         </div>
     );

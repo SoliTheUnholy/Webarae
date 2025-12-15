@@ -1,17 +1,18 @@
-import Silk from "@/components/silk/silk";
-import Image from "next/image";
-import Link from "next/link";
+import ColorBends from "@/components/ColorBends";
 
 export default function Contact() {
     return (
         <>
             <div className="fixed h-screen w-screen">
-                <Silk
-                    speed={5}
-                    scale={2}
-                    color="#104e64"
-                    noiseIntensity={1.5}
-                    rotation={0}
+            <ColorBends
+                    speed={1}
+                    scale={0.7}
+                    frequency={1}
+                    warpStrength={1}
+                    mouseInfluence={1}
+                    parallax={0.5}
+                    noise={0.1}
+                    transparent
                 />
             </div>
             <div className="absolute">
