@@ -477,10 +477,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 </div>
 
                 <header
-                    className="staggered-menu-header pointer-events-none fixed top-0 left-0 z-20 flex w-full items-center justify-between p-2"
+                    className="staggered-menu-header pointer-events-none fixed top-0 left-0 z-20 flex w-full items-center justify-between p-4"
                     aria-label="Main navigation header"
                 >
-                    <div className="pointer-events-auto flex h-9 items-center justify-center gap-1 select-none">
+                    <div className="pointer-events-auto flex h-12 items-center justify-center gap-1 select-none">
                         <LiquidButton
                         
                             ref={toggleBtnRef}                            

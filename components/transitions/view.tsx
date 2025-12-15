@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
+"use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -74,7 +74,11 @@ export default function View({
         { label: "درباره ما", ariaLabel: "Learn about us", link: "/about" },
         { label: "تماس با ما", ariaLabel: "Get in touch", link: "/contact" },
         { label: "فرم میکسر", ariaLabel: "Get in touch", link: "/mixer" },
-        { label: "سمپل", ariaLabel: "Get in touch", link: "/components-preview" },
+        {
+            label: "سمپل",
+            ariaLabel: "Get in touch",
+            link: "/components-preview",
+        },
     ];
 
     const socialItems = [
@@ -90,11 +94,11 @@ export default function View({
             >
                 <motion.div
                     {...animate(perspective)}
-                    className="bg-muted h-full w-full overflow-hidden rounded-3xl"
+                    className="bg-muted h-full w-full overflow-hidden rounded-4xl"
                 >
                     <motion.div {...animate(opacity)}>
                         <FrozenRoute>
-                            <div className="right-0 left-0 h-[100dvh] overflow-hidden overflow-y-scroll rounded-3xl">
+                            <div className="right-0 left-0 h-[100dvh] overflow-hidden overflow-y-scroll rounded-4xl">
                                 <StaggeredMenu
                                     isFixed={false}
                                     position="right"
@@ -114,7 +118,7 @@ export default function View({
                 </motion.div>
                 <motion.div
                     {...animate(slide)}
-                    className="bg-muted fixed top-0 left-0 h-[100dvh] w-full rounded-4xl bg-clip-content p-2"
+                    className="bg-muted fixed top-0 left-0 h-[100dvh] w-full rounded-[40px] bg-clip-content p-2"
                 />
             </motion.div>
         </AnimatePresence>

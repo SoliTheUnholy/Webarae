@@ -90,7 +90,7 @@ export default function Stepper({
             {...rest}
         >
             <Card
-                className={`mx-auto w-full max-w-md rounded-3xl shadow-xl ${stepCircleContainerClassName}`}
+                className={`mx-auto w-full max-w-md rounded-4xl shadow-xl ${stepCircleContainerClassName}`}
                 style={{ border: "1px solid primary" }}
             >
                 <div
