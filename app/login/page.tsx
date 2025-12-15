@@ -1,5 +1,5 @@
 "use client";
-import ColorBends from "@/components/ColorBends";
+import { GridScan } from "@/components/GridScan";
 import React, { useRef } from "react";
 
 export default function Login() {
@@ -7,16 +7,19 @@ export default function Login() {
     return (
         <div className="relative w-full">
             <div ref={domRef} className="fixed h-screen w-full">
-                <ColorBends
-                    speed={1}
-                    scale={0.7}
-                    frequency={1}
-                    warpStrength={1}
-                    mouseInfluence={1}
-                    parallax={0.5}
-                    noise={0.1}
-                    transparent
-                />
+                <GridScan
+                sensitivity={0}
+                lineThickness={0.1}
+                linesColor="#075985"
+                gridScale={0.02}
+                scanColor="#7dd3fc"
+                scanOpacity={0.4}
+                lineJitter={0.2}
+                enablePost
+                bloomIntensity={0.6}
+                chromaticAberration={0.005}
+                noiseIntensity={0.01}
+            />
             </div>
         </div>
     );
