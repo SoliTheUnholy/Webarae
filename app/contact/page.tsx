@@ -4,10 +4,10 @@ export default function Contact() {
     return (
         <>
             <div className="fixed h-screen w-screen">
-            <ColorBends
+                <ColorBends
                     speed={1}
                     scale={0.7}
-                    frequency={1}
+                    frequency={1.5}
                     warpStrength={1}
                     mouseInfluence={1}
                     parallax={0.5}
@@ -15,8 +15,7 @@ export default function Contact() {
                     transparent
                 />
             </div>
-            <div className="absolute">
-            </div>
+            <div className="absolute"></div>
         </>
     );
 }
