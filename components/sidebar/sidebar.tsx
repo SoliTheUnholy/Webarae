@@ -8,6 +8,8 @@ import { Separator } from "../ui/separator";
 import LoginButton from "../login/login-button";
 import LiquidButton from "../glass-button/glass-button";
 import { Cross, Menu, X } from "lucide-react";
+import AnimatedContent from "../AnimatedContent";
+import FadeContent from "../FadeContent";
 
 export interface StaggeredMenuItem {
     label: string;
@@ -468,36 +470,63 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 </div>
 
                 <header
-                    className="staggered-menu-header pointer-events-none fixed top-0 left-0 z-20 flex w-full items-center justify-between p-4"
+                    className="staggered-menu-header pointer-events-none fixed top-0 right-0 left-0 z-20 w-full"
                     aria-label="Main navigation header"
                 >
-                    <div className="pointer-events-auto flex h-12 items-center justify-center gap-1 select-none">
-                        <LiquidButton
-                            ref={toggleBtnRef}
-                            aria-label={open ? "Close menu" : "Open menu"}
-                            aria-expanded={open}
-                            aria-controls="staggered-menu-panel"
-                            onClick={toggleMenu}
-                        >
-                            <div className="relative h-5 w-5">
-                                <Menu
-                                    ref={menuIconRef}
-                                    className="absolute inset-0 h-5 w-5 stroke-3"
-                                />
-                                <X
-                                    ref={crossIconRef}
-                                    className="absolute inset-0 h-5 w-5 stroke-3"
-                                />
-                            </div>
-                        </LiquidButton>
-                        <Separator orientation="vertical" />
-                        <LoginButton />
-                    </div>
-                    <div className="pointer-events-auto flex h-9 items-center justify-center gap-1 select-none">
-                        <ThemeToggle />
-                    </div>
+                    <AnimatedContent
+                        className="flex w-full items-center justify-between p-4"
+                        distance={150}
+                        direction="vertical"
+                        reverse={true}
+                        duration={1.5}
+                        initialOpacity={0}
+                        animateOpacity={true}
+                        scale={1.5}
+                        threshold={0}
+                        delay={0.1}
+                    >
+                        <div className="pointer-events-auto flex h-12 items-center justify-center gap-1 select-none">
+                            <LiquidButton
+                                ref={toggleBtnRef}
+                                aria-label={open ? "Close menu" : "Open menu"}
+                                aria-expanded={open}
+                                aria-controls="staggered-menu-panel"
+                                onClick={toggleMenu}
+                            >
+                                <div className="relative h-5 w-5">
+                                    <Menu
+                                        ref={menuIconRef}
+                                        className="absolute inset-0 h-5 w-5 stroke-3"
+                                    />
+                                    <X
+                                        ref={crossIconRef}
+                                        className="absolute inset-0 h-5 w-5 stroke-3"
+                                    />
+                                </div>
+                            </LiquidButton>
+                            <Separator orientation="vertical" />
+                            <LoginButton />
+                        </div>
+                        <div className="pointer-events-auto flex h-12 items-center justify-center gap-1 select-none">
+                            <ThemeToggle />
+                        </div>
+                    </AnimatedContent>
                 </header>
-                {children}
+                <AnimatedContent
+                    distance={10}
+                    direction="vertical"
+                    reverse={true}
+                    duration={3}
+                    ease="power3.out"
+                    initialOpacity={0}
+                    animateOpacity
+                    scale={1.25}
+                    threshold={0}
+                    delay={0}
+                >
+                    {children}
+                </AnimatedContent>
+
                 <aside
                     id="staggered-menu-panel"
                     ref={panelRef}

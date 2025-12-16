@@ -1,12 +1,12 @@
 "use client";
+import FadeContent from "@/components/FadeContent";
 import Silk from "@/components/silk/silk";
-import React, { useRef } from "react";
+import SplitText from "@/components/SplitText";
 
 export default function Home() {
-    const domRef = useRef<HTMLDivElement>(null);
     return (
         <div className="relative w-full">
-            <div ref={domRef} className="fixed h-screen w-full">
+            <div className="fixed h-screen w-full">
                 <Silk
                     speed={5}
                     scale={2}
@@ -15,9 +15,39 @@ export default function Home() {
                     rotation={0}
                 />
             </div>
-            <div className="absolute flex h-svh w-full items-center justify-center">
-                <span className="text-6xl font-bold">بزودی...</span>
-            </div>
+            <FadeContent
+                blur={false}
+                duration={2000}
+                initialOpacity={0}
+                className="absolute flex h-svh w-full flex-col items-center justify-center"
+            >
+                <SplitText
+                    text="وب آرای"
+                    className="h-24 text-center text-7xl font-bold"
+                    delay={100}
+                    duration={1.5}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 24 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0}
+                    rootMargin="100px"
+                    textAlign="center"
+                />
+                <SplitText
+                    text="تجربه‌ای فراتر از کد"
+                    className="h-12 text-center text-3xl"
+                    delay={200}
+                    duration={2}
+                    ease="power3.out"
+                    splitType="words"
+                    from={{ opacity: 0, y: 80 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0}
+                    rootMargin="-100px"
+                    textAlign="center"
+                />
+            </FadeContent>
         </div>
     );
 }

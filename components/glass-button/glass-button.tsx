@@ -34,7 +34,7 @@ export default function LiquidButton({
             navTopButtonRefractiveIndex.set(
                 GLASS_EFFECTS.NAV_REFRACTIVE_INDEX_DEFAULT,
             );
-        }, 3000);
+        }, 2000);
     };
 
     const handleTopNavHover = (isHovered: boolean) => {

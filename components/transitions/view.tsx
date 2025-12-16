@@ -43,7 +43,7 @@ export default function View({
                 "perspective(1000px) rotateX(-10deg) scale(0.9)",
                 "perspective(1000px) rotateX(0deg) scale(0.85)",
             ],
-            transition: { duration: 0.375 },
+            transition: { duration: 0.5 },
         },
     };
     const slide = {
@@ -64,7 +64,7 @@ export default function View({
                 "perspective(1000px) rotateX(0deg) scale(1)",
             ],
             transition: {
-                duration: 0.375,
+                duration: 0.5,
                 delay: 0.125,
             },
         },
