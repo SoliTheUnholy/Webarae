@@ -12,7 +12,7 @@ const LoginButton = () => {
                 router.push("/login");
             }}
         >
-            <User className="h-5 w-5 stroke-3" />
+            <User className="h-5 w-5" />
             <span className="sr-only">login</span>
         </LiquidButton>
     );

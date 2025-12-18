@@ -496,11 +496,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                 <div className="relative h-5 w-5">
                                     <Menu
                                         ref={menuIconRef}
-                                        className="absolute inset-0 h-5 w-5 stroke-3"
+                                        className="absolute inset-0 h-5 w-5"
                                     />
                                     <X
                                         ref={crossIconRef}
-                                        className="absolute inset-0 h-5 w-5 stroke-3"
+                                        className="absolute inset-0 h-5 w-5"
                                     />
                                 </div>
                             </LiquidButton>
@@ -512,21 +512,22 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         </div>
                     </AnimatedContent>
                 </header>
-                <AnimatedContent
-                    distance={10}
-                    direction="vertical"
-                    reverse={true}
-                    duration={3}
-                    ease="power3.out"
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={1.25}
-                    threshold={0}
-                    delay={0}
-                >
-                    {children}
-                </AnimatedContent>
-
+                <FadeContent blur={false} duration={2000} initialOpacity={0}>
+                    <AnimatedContent
+                        distance={10}
+                        direction="vertical"
+                        reverse={true}
+                        duration={2}
+                        ease="power3.out"
+                        initialOpacity={0}
+                        animateOpacity
+                        scale={1.2}
+                        threshold={0}
+                        delay={0}
+                    >
+                        {children}
+                    </AnimatedContent>
+                </FadeContent>
                 <aside
                     id="staggered-menu-panel"
                     ref={panelRef}

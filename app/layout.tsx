@@ -20,8 +20,7 @@ export default function RootLayout({
             <body className={`bg-background antialiased`}>
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="system"
-                    enableSystem
+                    themes={["dark","light"]}
                 >
                     <View>{children}</View>
                 </ThemeProvider>

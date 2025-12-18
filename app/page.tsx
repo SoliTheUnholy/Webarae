@@ -1,18 +1,20 @@
 "use client";
 import FadeContent from "@/components/FadeContent";
-import Silk from "@/components/silk/silk";
+import Iridescence from "@/components/Iridescence";
 import SplitText from "@/components/SplitText";
+import { useTheme } from "next-themes";
 
 export default function Home() {
     return (
         <div className="relative w-full">
-            <div className="fixed h-screen w-full">
-                <Silk
-                    speed={5}
-                    scale={2}
-                    color="#104e64"
-                    noiseIntensity={1.5}
-                    rotation={0}
+            <div
+                className={`fixed h-screen w-full transition-all duration-500 dark:invert`}
+            >
+                <Iridescence
+                    color={[1, 1, 1]}
+                    mouseReact={false}
+                    amplitude={1}
+                    speed={1.0}
                 />
             </div>
             <FadeContent
