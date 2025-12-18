@@ -2,7 +2,6 @@
 import FadeContent from "@/components/FadeContent";
 import Iridescence from "@/components/Iridescence";
 import SplitText from "@/components/SplitText";
-import { useTheme } from "next-themes";
 
 export default function Home() {
     return (
@@ -13,7 +12,7 @@ export default function Home() {
                 <Iridescence
                     color={[1, 1, 1]}
                     mouseReact={false}
-                    amplitude={1}
+                    amplitude={0.5}
                     speed={1.0}
                 />
             </div>
@@ -24,28 +23,28 @@ export default function Home() {
                 className="absolute flex h-svh w-full flex-col items-center justify-center"
             >
                 <SplitText
-                    text="وب آرای"
-                    className="h-24 text-center text-7xl font-bold"
+                    text="وبآرای"
+                    className="h-36 align text-8xl font-bold"
                     delay={100}
                     duration={1.5}
                     ease="power3.out"
                     splitType="chars"
-                    from={{ opacity: 0, y: 24 }}
+                    from={{ opacity: 0, y: 48 }}
                     to={{ opacity: 1, y: 0 }}
-                    threshold={0}
-                    rootMargin="100px"
+                    threshold={0.1}
+                    rootMargin="-100px"
                     textAlign="center"
                 />
                 <SplitText
                     text="تجربه‌ای فراتر از کد"
-                    className="h-12 text-center text-3xl"
+                    className="h-12 text-center text-4xl"
                     delay={200}
                     duration={2}
                     ease="power3.out"
                     splitType="words"
                     from={{ opacity: 0, y: 80 }}
                     to={{ opacity: 1, y: 0 }}
-                    threshold={0}
+                    threshold={0.1}
                     rootMargin="-100px"
                     textAlign="center"
                 />

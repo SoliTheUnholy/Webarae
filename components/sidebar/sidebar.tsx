@@ -10,6 +10,8 @@ import LiquidButton from "../glass-button/glass-button";
 import { Cross, Menu, X } from "lucide-react";
 import AnimatedContent from "../AnimatedContent";
 import FadeContent from "../FadeContent";
+import Logo from "../logo/logo";
+import { usePathname } from "next/navigation";
 
 export interface StaggeredMenuItem {
     label: string;
@@ -65,7 +67,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }: StaggeredMenuProps) => {
     const [open, setOpen] = useState(false);
     const openRef = useRef(false);
-
+    const pathname = usePathname();
     const panelRef = useRef<HTMLDivElement | null>(null);
     const preLayersRef = useRef<HTMLDivElement | null>(null);
     const preLayerElsRef = useRef<HTMLElement[]>([]);
@@ -474,7 +476,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     aria-label="Main navigation header"
                 >
                     <AnimatedContent
-                        className="flex w-full items-center justify-between p-4"
+                        className="flex w-full items-center justify-between gap-2 p-4"
                         distance={150}
                         direction="vertical"
                         reverse={true}
@@ -485,7 +487,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         threshold={0}
                         delay={0.1}
                     >
-                        <div className="pointer-events-auto flex h-12 items-center justify-center gap-1 select-none">
+                        <div className="pointer-events-auto flex h-12 items-center justify-center gap-2 select-none">
                             <LiquidButton
                                 ref={toggleBtnRef}
                                 aria-label={open ? "Close menu" : "Open menu"}
@@ -504,10 +506,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                     />
                                 </div>
                             </LiquidButton>
-                            <Separator orientation="vertical" />
+                            {/* <Separator orientation="vertical" /> */}
                             <LoginButton />
                         </div>
-                        <div className="pointer-events-auto flex h-12 items-center justify-center gap-1 select-none">
+                        <div className="pointer-events-auto flex h-12 items-center justify-center gap-2 select-none">
+                            <Logo />
+                            {/* <Separator orientation="vertical" /> */}
                             <ThemeToggle />
                         </div>
                     </AnimatedContent>
@@ -525,7 +529,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         threshold={0}
                         delay={0}
                     > */}
-                        {children}
+                    {children}
                     {/* </AnimatedContent> */}
                 </FadeContent>
                 <aside
@@ -550,10 +554,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                         <Link
                                             className="sm-panel-item text-foreground relative inline-block cursor-pointer pl-[1em] text-[3rem] leading-none font-semibold tracking-[2px] uppercase no-underline transition-[background,color] duration-150 ease-linear"
                                             href={it.link}
+                                            onClick={toggleMenu}
                                             aria-label={it.ariaLabel}
                                             data-index={idx + 1}
                                         >
-                                            <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] pb-4 will-change-transform">
+                                            <span
+                                                className={`sm-panel-itemLabel inline-block [transform-origin:50%_100%] pb-4 will-change-transform ${it.link === "/" ? (pathname.split("/")[1] ? "" : "text-primary") : it.link.includes(pathname.split("/")[1]) ? (pathname.split("/")[1] ? "text-primary" : "") : ""} `}
+                                            >
                                                 {it.label}
                                             </span>
                                         </Link>
