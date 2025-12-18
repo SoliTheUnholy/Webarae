@@ -20,11 +20,12 @@ export default function Home() {
                 blur={false}
                 duration={2000}
                 initialOpacity={0}
-                className="absolute flex h-svh w-full flex-col items-center justify-center"
+                className="absolute flex h-svh w-full gap-4 flex-col items-center justify-center"
             >
                 <SplitText
                     text="وبآرای"
-                    className="h-36 align text-8xl font-bold"
+                    tag="h1"
+                    className="text-7xl font-bold"
                     delay={100}
                     duration={1.5}
                     ease="power3.out"
@@ -37,7 +38,7 @@ export default function Home() {
                 />
                 <SplitText
                     text="تجربه‌ای فراتر از کد"
-                    className="h-12 text-center text-4xl"
+                    className=" text-3xl"
                     delay={200}
                     duration={2}
                     ease="power3.out"
