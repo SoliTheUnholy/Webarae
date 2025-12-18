@@ -513,7 +513,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     </AnimatedContent>
                 </header>
                 <FadeContent blur={false} duration={2000} initialOpacity={0}>
-                    <AnimatedContent
+                    {/* <AnimatedContent
                         distance={10}
                         direction="vertical"
                         reverse={true}
@@ -524,9 +524,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         scale={1.2}
                         threshold={0}
                         delay={0}
-                    >
+                    > */}
                         {children}
-                    </AnimatedContent>
+                    {/* </AnimatedContent> */}
                 </FadeContent>
                 <aside
                     id="staggered-menu-panel"
