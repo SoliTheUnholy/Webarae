@@ -18,7 +18,7 @@ export default function Home() {
                     speed={1.0}
                 />
             </div>
-            <div className="z-10 absolute grid snap-y snap-mandatory scroll-p-4 scroll-pt-20 items-center justify-center scroll-smooth">
+            <div className="absolute z-10 flex w-full snap-y snap-mandatory scroll-p-4 scroll-pt-20 items-center justify-center scroll-smooth">
                 <div className="flex h-svh w-80 snap-center snap-always flex-col items-center justify-center gap-8">
                     <SplitText
                         text="تجربه‌ای"
