@@ -1,6 +1,5 @@
-"use client"
-import { LiquidGlass } from "@/components/ui/glass";
-import { useMotionValue, useSpring } from "motion/react";
+"use client";
+import { Button } from "../ui/button";
 
 // Glass effect constants - easy to adjust for different interaction states
 const GLASS_EFFECTS = {
@@ -24,48 +23,13 @@ export default function LiquidButton({
     ref?: React.RefObject<HTMLButtonElement | null>;
     onClick?: () => void;
 }) {
-    const navTopButtonBlur = useSpring(1, GLASS_EFFECTS.SPRING_CONFIG);
-
-    const navTopButtonRefractiveIndex = useSpring(
-        GLASS_EFFECTS.NAV_REFRACTIVE_INDEX,
-        GLASS_EFFECTS.SPRING_CONFIG,
-    );
-
-    const handleLoad = () => {
-        setTimeout(() => {
-            navTopButtonRefractiveIndex.set(
-                GLASS_EFFECTS.NAV_REFRACTIVE_INDEX_DEFAULT,
-            );
-        }, 2000);
-    };
-
-    const handleTopNavHover = (isHovered: boolean) => {
-        navTopButtonBlur.set(
-            isHovered
-                ? GLASS_EFFECTS.NAV_BLUR_HOVER
-                : GLASS_EFFECTS.NAV_BLUR_DEFAULT,
-        );
-        navTopButtonRefractiveIndex.set(
-            isHovered
-                ? GLASS_EFFECTS.NAV_REFRACTIVE_INDEX_HOVER
-                : GLASS_EFFECTS.NAV_REFRACTIVE_INDEX_DEFAULT,
-        );
-    };
-
     return (
-        <LiquidGlass
+        <Button
+            variant={"outline"}
             className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-3xl ${className}`}
             onClick={onClick}
-            onReady={handleLoad}
-            onMouseEnter={() => handleTopNavHover(true)}
-            onMouseLeave={() => handleTopNavHover(false)}
-            glassThickness={50}
-            bezelWidth={25}
-            refractiveIndex={navTopButtonRefractiveIndex}
-            blur={navTopButtonBlur}
-            specularOpacity={1}
         >
             {children}
-        </LiquidGlass>
+        </Button>
     );
 }
