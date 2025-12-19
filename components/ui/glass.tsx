@@ -271,9 +271,9 @@ const LiquidDiv = React.forwardRef<
             !/Chrome/.test(navigator.userAgent);
         const isFirefox = /Firefox/.test(navigator.userAgent);
 
-        const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const width = window.innerWidth;
 
-        if (isWebkit || isFirefox || isMobile) {
+        if (isWebkit || isFirefox || width < 500) {
             return false;
         }
 

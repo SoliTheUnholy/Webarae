@@ -507,7 +507,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                 </div>
                             </LiquidButton>
                             {/* <Separator orientation="vertical" /> */}
-                            <LoginButton />
+                            <div onClick={toggleMenu}>
+                                <LoginButton />
+                            </div>
                         </div>
                         <div className="pointer-events-auto flex h-12 items-center justify-center gap-2 select-none">
                             <Logo />
@@ -517,7 +519,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     </AnimatedContent>
                 </header>
                 <FadeContent
-                    className="w-full h-full"
+                    className="h-full w-full"
                     blur={false}
                     duration={2000}
                     initialOpacity={0}
