@@ -3,13 +3,9 @@ import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ThemeToggle } from "../theme/theme-toggle";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
 import LoginButton from "../login/login-button";
 import LiquidButton from "../glass-button/glass-button";
-import { Cross, Menu, X } from "lucide-react";
-import AnimatedContent from "../AnimatedContent";
-import FadeContent from "../FadeContent";
+import { Menu, X } from "lucide-react";
 import Logo from "../logo/logo";
 import { usePathname } from "next/navigation";
 
@@ -475,18 +471,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     className="staggered-menu-header pointer-events-none fixed top-0 right-0 left-0 z-20 w-full"
                     aria-label="Main navigation header"
                 >
-                    <AnimatedContent
-                        className="flex w-full items-center justify-between gap-2 p-4"
-                        distance={150}
-                        direction="vertical"
-                        reverse={true}
-                        duration={1.5}
-                        initialOpacity={0}
-                        animateOpacity={true}
-                        scale={1.5}
-                        threshold={0}
-                        delay={0.1}
-                    >
+                    <div className="flex w-full items-center justify-between gap-2 p-4">
                         <div className="pointer-events-auto flex h-12 items-center justify-center gap-2 select-none">
                             <LiquidButton
                                 ref={toggleBtnRef}
@@ -516,16 +501,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                             {/* <Separator orientation="vertical" /> */}
                             <ThemeToggle />
                         </div>
-                    </AnimatedContent>
+                    </div>
                 </header>
-                <FadeContent
-                    className="h-full w-full"
-                    blur={false}
-                    duration={2000}
-                    initialOpacity={0}
-                >
-                    {children}
-                </FadeContent>
+                <div className="h-full w-full">{children}</div>
                 <aside
                     id="staggered-menu-panel"
                     ref={panelRef}
