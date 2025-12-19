@@ -1,13 +1,15 @@
-"use client";
-import FadeContent from "@/components/FadeContent";
+import AnimatedContent from "@/components/AnimatedContent";
 import Iridescence from "@/components/Iridescence";
 import SplitText from "@/components/SplitText";
+import LiquidButton from "@/components/glass-button/glass-button";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Phone } from "lucide-react";
 
 export default function Home() {
     return (
-        <div className="relative w-full">
+        <>
             <div
-                className={`fixed h-screen w-full transition-all duration-500 dark:invert`}
+                className={`fixed h-full w-full transition-all duration-500 dark:invert`}
             >
                 <Iridescence
                     color={[1, 1, 1]}
@@ -16,40 +18,67 @@ export default function Home() {
                     speed={1.0}
                 />
             </div>
-            <FadeContent
-                blur={false}
-                duration={2000}
-                initialOpacity={0}
-                className="absolute flex h-svh w-full gap-4 flex-col items-center justify-center"
-            >
-                <SplitText
-                    text="وبآرای"
-                    tag="h1"
-                    className="text-7xl font-bold"
-                    delay={100}
-                    duration={1.5}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 48 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="center"
-                />
-                <SplitText
-                    text="تجربه‌ای فراتر از کد"
-                    className=" text-3xl"
-                    delay={200}
-                    duration={2}
-                    ease="power3.out"
-                    splitType="words"
-                    from={{ opacity: 0, y: 80 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="center"
-                />
-            </FadeContent>
-        </div>
+            <div className="z-10 grid snap-y snap-mandatory scroll-p-4 scroll-pt-20 items-center justify-center scroll-smooth">
+                <div className="flex h-svh w-80 snap-center snap-always flex-col items-center justify-center gap-8">
+                    <SplitText
+                        text="تجربه‌ای"
+                        tag="h1"
+                        className="text-6xl font-bold"
+                        delay={100}
+                        duration={1.5}
+                        ease="power3.out"
+                        splitType="words"
+                        from={{ opacity: 0, y: 128 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="center"
+                    />
+                    <SplitText
+                        text="فراتر از کد"
+                        tag="h1"
+                        className="-mt-4 text-6xl font-bold"
+                        delay={100}
+                        duration={1.5}
+                        ease="power3.out"
+                        splitType="words"
+                        from={{ opacity: 0, y: 128 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="center"
+                    />
+                    <SplitText
+                        text="طراحی و توسعه وب سایت و وب اپلیکیشن با جدیدترین تکنولوژی ها"
+                        className="text-2xl"
+                        delay={200}
+                        duration={2}
+                        ease="power3.out"
+                        splitType="lines"
+                        from={{ opacity: 0, y: 80 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="center"
+                    />
+                    <AnimatedContent className="grid grid-cols-2 gap-4">
+                        <LiquidButton className="w-40">
+                            <ArrowRight />
+                            ثبت سفارش
+                        </LiquidButton>
+                        <a href="tel:+989025206321">
+                            <Button
+                                variant={"default"}
+                                className="h-12 w-40 rounded-full"
+                            >
+                                <Phone />
+                                مشاوره تخصصی
+                            </Button>
+                        </a>
+                    </AnimatedContent>
+                </div>
+                {/* <div className="flex h-svh w-full snap-center snap-always flex-col items-center justify-center gap-4"></div> */}
+            </div>
+        </>
     );
 }

@@ -1,27 +1,29 @@
 "use client";
-import { GridScan } from "@/components/GridScan";
-import React, { useRef } from "react";
+
+import Beams from "@/components/Beams";
+import ColorBends from "@/components/ColorBends";
+import { LoginForm } from "@/components/login/login-form";
 
 export default function Login() {
-    const domRef = useRef<HTMLDivElement>(null);
     return (
-        <div className="relative w-full">
-            <div ref={domRef} className="fixed h-screen w-full">
-                <GridScan
-                sensitivity={0}
-                lineThickness={0.1}
-                linesColor="#075985"
-                gridScale={0.02}
-                scanColor="#7dd3fc"
-                scanOpacity={0.4}
-                lineJitter={0.2}
-                enablePost
-                bloomIntensity={0.6}
-                chromaticAberration={0.005}
-                noiseIntensity={0.01}
-            />
-            
+        <>
+            <div
+                className={`bg-background fixed h-full w-full opacity-50 transition-all duration-500`}
+            >
+                <ColorBends
+                    speed={0.1}
+                    scale={3}
+                    frequency={0.1}
+                    warpStrength={1}
+                    mouseInfluence={0}
+                    parallax={0.5}
+                    noise={0.08}
+                    transparent
+                />
             </div>
-        </div>
+            <div className="absolute z-20 flex h-full w-full items-center justify-center pt-20">
+                <LoginForm />
+            </div>
+        </>
     );
 }

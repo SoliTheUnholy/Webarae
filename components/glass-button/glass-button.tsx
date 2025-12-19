@@ -1,6 +1,6 @@
+"use client"
 import { LiquidGlass } from "@/components/ui/glass";
 import { useMotionValue, useSpring } from "motion/react";
-import { useEffect, useRef } from "react";
 
 // Glass effect constants - easy to adjust for different interaction states
 const GLASS_EFFECTS = {
