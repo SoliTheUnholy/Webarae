@@ -18,7 +18,7 @@ export default function Home() {
                     speed={1.0}
                 />
             </div>
-            <div className="z-10 grid snap-y snap-mandatory scroll-p-4 scroll-pt-20 items-center justify-center scroll-smooth">
+            <div className="z-10 w-full absolute grid snap-y snap-mandatory scroll-p-4 scroll-pt-20 items-center justify-center scroll-smooth">
                 <div className="flex h-svh w-80 snap-center snap-always flex-col items-center justify-center gap-8">
                     <SplitText
                         text="تجربه‌ای"
@@ -62,14 +62,14 @@ export default function Home() {
                         textAlign="center"
                     />
                     <AnimatedContent className="grid grid-cols-2 gap-4">
-                        <LiquidButton className="w-40">
+                        <LiquidButton className="w-38">
                             <ArrowRight />
                             ثبت سفارش
                         </LiquidButton>
                         <a href="tel:+989025206321">
                             <Button
                                 variant={"default"}
-                                className="h-12 w-40 rounded-full"
+                                className="h-12 w-38 rounded-full"
                             >
                                 <Phone />
                                 مشاوره تخصصی
