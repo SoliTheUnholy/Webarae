@@ -1,4 +1,5 @@
 import AnimatedContent from "@/components/AnimatedContent";
+import FadeContent from "@/components/FadeContent";
 import Iridescence from "@/components/Iridescence";
 import SplitText from "@/components/SplitText";
 import LiquidButton from "@/components/glass-button/glass-button";
@@ -19,7 +20,7 @@ export default function Home() {
                 />
             </div>
             <div className="absolute z-10 flex w-full snap-y snap-mandatory scroll-p-4 scroll-pt-20 items-center justify-center scroll-smooth">
-                <div className="flex h-svh w-80 snap-center snap-always flex-col items-center justify-center gap-8">
+                <FadeContent className="flex h-svh w-80 snap-center snap-always flex-col items-center justify-center gap-8">
                     <SplitText
                         text="تجربه‌ای"
                         tag="h1"
@@ -76,7 +77,7 @@ export default function Home() {
                             </Button>
                         </a>
                     </AnimatedContent>
-                </div>
+                </FadeContent>
                 {/* <div className="flex h-svh w-full snap-center snap-always flex-col items-center justify-center gap-4"></div> */}
             </div>
         </>

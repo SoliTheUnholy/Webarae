@@ -490,21 +490,21 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         <div className="pointer-events-auto flex h-12 items-center justify-center gap-2 select-none">
                             <LiquidButton
                                 ref={toggleBtnRef}
+                                className="relative"
                                 aria-label={open ? "Close menu" : "Open menu"}
                                 aria-expanded={open}
                                 aria-controls="staggered-menu-panel"
                                 onClick={toggleMenu}
                             >
-                                <div className="relative h-5 w-5">
-                                    <Menu
-                                        ref={menuIconRef}
-                                        className="absolute inset-0 h-5 w-5"
-                                    />
-                                    <X
-                                        ref={crossIconRef}
-                                        className="absolute inset-0 h-5 w-5"
-                                    />
-                                </div>
+                                
+                                <Menu
+                                    ref={menuIconRef}
+                                    className="absolute h-5 w-5"
+                                />
+                                <X
+                                    ref={crossIconRef}
+                                    className="absolute  h-5 w-5"
+                                />
                             </LiquidButton>
                             {/* <Separator orientation="vertical" /> */}
                             <LoginButton />
@@ -517,7 +517,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     </AnimatedContent>
                 </header>
                 <FadeContent
-                    className="w-full h-full"
+                    className="h-full w-full"
                     blur={false}
                     duration={2000}
                     initialOpacity={0}
