@@ -65,7 +65,7 @@ export default function View({
             ],
             transition: {
                 duration: 0.5,
-                delay: 0.125,
+                delay: 0.25,
             },
         },
     };
@@ -76,9 +76,9 @@ export default function View({
     ];
 
     const socialItems = [
-        { label: "Twitter", link: "https://twitter.com" },
-        { label: "GitHub", link: "https://github.com" },
-        { label: "LinkedIn", link: "https://linkedin.com" },
+        { label: "Twitter", link: "https://twitter.com/SoliTheUnholy" },
+        { label: "GitHub", link: "https://github.com/SoliTheUnholy" },
+        { label: "LinkedIn", link: "https://www.linkedin.com/in/mohammadreza-barvar" },
     ];
     return (
         <AnimatePresence mode="wait">

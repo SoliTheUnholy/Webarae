@@ -2,7 +2,7 @@
 
 import Beams from "@/components/Beams";
 import ColorBends from "@/components/ColorBends";
-import { LoginForm } from "@/components/login/login-form";
+import LoginForm from "@/components/login/login-form";
 
 export default function Login() {
     return (
@@ -21,7 +21,7 @@ export default function Login() {
                     transparent
                 />
             </div>
-            <div className="absolute z-20 flex h-full w-full items-center justify-center pt-20">
+            <div className="absolute z-20 flex h-full w-full items-center justify-center">
                 <LoginForm />
             </div>
         </>
