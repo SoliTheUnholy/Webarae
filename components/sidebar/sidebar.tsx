@@ -499,7 +499,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                 
                                 <Menu
                                     ref={menuIconRef}
-                                    className="absolute h-5 w-5"
+                                    className="absolute h-5 w-5 "
                                 />
                                 <X
                                     ref={crossIconRef}
