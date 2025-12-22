@@ -121,7 +121,11 @@ const LoginForm = () => {
         }
     }, [otp]);
     return (
-        <AnimatedContent duration={2} animateOpacity className="grid h-full items-center justify-center md:col-span-2">
+        <AnimatedContent
+            duration={2}
+            animateOpacity
+            className="grid h-full items-center justify-center md:col-span-2"
+        >
             <Form {...form}>
                 <form className={`relative grid w-[90vw] max-w-90 gap-1`}>
                     <FormField
@@ -135,7 +139,21 @@ const LoginForm = () => {
                                     ثبت نام/ورود
                                 </FormLabel>
                                 <FormMessage className="mx-auto" />
-                                <FormControl>
+                                <FormControl
+                                    onChange={(e) => {
+                                        if (
+                                            form
+                                                .getValues("phone")
+                                                .match(
+                                                    new RegExp(
+                                                        /^(\+98|0)?9\d{9}$/,
+                                                    ),
+                                                )
+                                        ) {
+                                            SendCode();
+                                        }
+                                    }}
+                                >
                                     <Input
                                         autoFocus
                                         type="number"
@@ -253,6 +271,7 @@ const LoginForm = () => {
                             e.preventDefault();
                             if (!otp) {
                                 SendCode();
+                                form.setFocus("otp");
                             } else {
                                 Submit();
                             }
