@@ -6,7 +6,7 @@
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: "Lama Sans";
+    --font-sans: "Modam";
     --font-mono: "TROX";
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
@@ -187,7 +187,7 @@
     }
     body {
         @apply bg-background text-foreground;
-        font-family: 'Lama Sans', sans-serif;
+        font-family: 'Modam', sans-serif;
     }
     ::-webkit-scrollbar {
         display: none;
@@ -210,166 +210,64 @@
 }
 
 @font-face {
-  font-family: TROX;
+        font-family: TROX;
   font-style: normal;
+  font-weight: 900;
   src: url(/fonts/TROX.ttf);
 }
-
 @font-face {
-    font-family: IRANSansXFaNum;
-    font-style: normal;
-    font-weight: 300;
-    src: url(/fonts/IRANSansXFaNum-light.woff2);
-}
-
-@font-face {
-    font-family: IRANSansXFaNum;
-    font-style: normal;
-    font-weight: 400;
-    src: url(/fonts/IRANSansXFaNum-regular.woff2);
-}
-
-@font-face {
-    font-family: IRANSansXFaNum;
-    font-style: normal;
-    font-weight: 500;
-    src: url(/fonts/IRANSansXFaNum-medium.woff2);
-}
-
-@font-face {
-    font-family: IRANSansXFaNum;
-    font-style: normal;
-    font-weight: 700;
-    src: url(/fonts/IRANSansXFaNum-bold.woff2);
-}
-
-/* Lama Sans font family with proper weights */
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: normal;
-  font-weight: 100;
-  src: url('/fonts/LamaSans-Thin.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
+  font-family: Modam;
   font-style: normal;
   font-weight: 200;
-  src: url('/fonts/LamaSans-ExtraLight.woff') format('woff');
-}
-
+  src: url(/fonts/Modam-ExtraLight.ttf
+  );}
 @font-face {
-  font-family: 'Lama Sans';
+  font-family: Modam;
   font-style: normal;
   font-weight: 300;
-  src: url('/fonts/LamaSans-Light.woff') format('woff');
+  src: url(/fonts/Modam-Light.ttf);
 }
 
 @font-face {
-  font-family: 'Lama Sans';
+  font-family: Modam;
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/LamaSans-Regular.woff') format('woff');
+  src: url(/fonts/Modam-Medium.ttf);
 }
 
 @font-face {
-  font-family: 'Lama Sans';
+  font-family: Modam;
   font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/LamaSans-Medium.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: normal;
-  font-weight: 600;
-  src: url('/fonts/LamaSans-SemiBold.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/fonts/LamaSans-Bold.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: normal;
-  font-weight: 800;
-  src: url('/fonts/LamaSans-ExtraBold.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: normal;
-  font-weight: 900;
-  src: url('/fonts/LamaSans-Black.woff') format('woff');
-}
-
-/* Italic variants */
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
   font-weight: 100;
-  src: url('/fonts/LamaSans-ThinItalic.woff') format('woff');
+  src: url(/fonts/Modam-Regular.ttf);
+}
+@font-face {
+  font-family: Modam;
+  font-style: normal;
+  font-weight: 100;
+  src: url(/fonts/Modam-Black.ttf);
+}
+@font-face {
+  font-family: Modam;
+  font-style: normal;
+  font-weight: 100;
+  src: url(/fonts/Modam-Bold.ttf);
+}@font-face {
+  font-family: Modam;
+  font-style: normal;
+  font-weight: 100;
+  src: url(/fonts/Modam-ExtraBold.ttf);
+}
+@font-face {
+  font-family: Modam;
+  font-style: normal;
+  font-weight: 100;
+  src: url(/fonts/Modam-SemiBold.ttf);
 }
 
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 200;
-  src: url('/fonts/LamaSans-ExtraLightItalic.woff') format('woff');
-}
 
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 300;
-  src: url('/fonts/LamaSans-LightItalic.woff') format('woff');
-}
 
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: url('/fonts/LamaSans-RegularItalic.woff') format('woff');
-}
 
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 500;
-  src: url('/fonts/LamaSans-MediumItalic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 600;
-  src: url('/fonts/LamaSans-SemiBoldItalic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 700;
-  src: url('/fonts/LamaSans-BoldItalic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 800;
-  src: url('/fonts/LamaSans-ExtraBoldItalic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Lama Sans';
-  font-style: italic;
-  font-weight: 900;
-  src: url('/fonts/LamaSans-BlackItalic.woff') format('woff');
-}
 
 /* Custom range slider styling */
 input[type="range"] {
