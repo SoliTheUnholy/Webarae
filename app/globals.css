@@ -212,7 +212,7 @@
 @font-face {
         font-family: TROX;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 400;
   src: url(/fonts/TROX.ttf);
 }
 @font-face {
@@ -232,39 +232,39 @@
   font-family: Modam;
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/Modam-Medium.ttf);
-}
-
-@font-face {
-  font-family: Modam;
-  font-style: normal;
-  font-weight: 100;
   src: url(/fonts/Modam-Regular.ttf);
 }
 @font-face {
   font-family: Modam;
   font-style: normal;
-  font-weight: 100;
-  src: url(/fonts/Modam-Black.ttf);
+  font-weight: 500;
+  src: url(/fonts/Modam-Medium.ttf);
 }
 @font-face {
   font-family: Modam;
   font-style: normal;
-  font-weight: 100;
+  font-weight: 600;
+  src: url(/fonts/Modam-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: Modam;
+  font-style: normal;
+  font-weight: 700;
   src: url(/fonts/Modam-Bold.ttf);
 }@font-face {
   font-family: Modam;
   font-style: normal;
-  font-weight: 100;
+  font-weight: 800;
   src: url(/fonts/Modam-ExtraBold.ttf);
 }
+
 @font-face {
   font-family: Modam;
   font-style: normal;
-  font-weight: 100;
-  src: url(/fonts/Modam-SemiBold.ttf);
+  font-weight: 900;
+  src: url(/fonts/Modam-Black.ttf);
 }
-
 
 
 

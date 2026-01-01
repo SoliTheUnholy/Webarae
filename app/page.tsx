@@ -19,13 +19,26 @@ export default function Home() {
                     speed={1.0}
                 />
             </div>
-            <div className="absolute z-10 flex w-full snap-y snap-mandatory scroll-p-4 scroll-pt-20 items-center justify-center scroll-smooth">
+            <div className="absolute z-10 flex w-full snap-y snap-mandatory scroll-p-4 scroll-pt-20 flex-col items-center justify-center scroll-smooth">
                 <FadeContent className="flex h-svh w-80 snap-center snap-always flex-col items-center justify-center gap-4">
-<AnimatedContent className="flex flex-col gap-4" reverse >                    <h1 className="font-black text-6xl text-center">
-                        تجربه ای فراتر از کد
-                    </h1>
-                    <h2 className="text-2xl text-center font-light">طراحی و توسعه وب سایت و وب اپلیکیشن های مدرن با جدیدترین تکنولوژی ها</h2></AnimatedContent>
-                    <AnimatedContent className="grid grid-cols-2 gap-4">
+                    <AnimatedContent
+                        duration={2}
+                        animateOpacity
+                        className="flex flex-col gap-4"
+                    >
+                        <h1 className="text-center text-6xl font-black">
+                            تجربه ای فراتر از کد
+                        </h1>
+                        <h2 className="text-center text-2xl font-light text-pretty">
+                            طراحی و توسعه وب سایت و وب اپلیکیشن های مدرن با
+                            جدیدترین تکنولوژی ها
+                        </h2>
+                    </AnimatedContent>
+                    <AnimatedContent
+                        duration={2}
+                        animateOpacity
+                        className="grid grid-cols-2 gap-4"
+                    >
                         <LiquidButton className="w-40">
                             <ArrowRight />
                             ثبت سفارش
@@ -41,7 +54,17 @@ export default function Home() {
                         </a>
                     </AnimatedContent>
                 </FadeContent>
-                {/* <div className="flex h-svh w-full snap-center snap-always flex-col items-center justify-center gap-4"></div> */}
+                <div className="h-svh w-full p-4">
+                    <h3 className="text-primary mr-10">چرا وب آرای ؟</h3>
+                    <h2 className="mr-10 text-4xl font-bold">
+                        ما تو این حوضه بهترینیم !
+                    </h2>
+                    <p className="mt-4 mr-10 text-xl font-light w-1/2">
+                        بکارگیری شیوه های نوین در برنامه نویسی وبسایت شما که با
+                        ساده کردن مسیر فرایند ها با افزایش فروش و سبک کردن کار
+                        کارمندان سود شما را افزایش میدهیم.
+                    </p>
+                </div>
             </div>
         </>
     );
