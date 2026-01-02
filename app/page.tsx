@@ -59,7 +59,7 @@ export default function Home() {
                     <h2 className="mr-10 text-4xl font-bold">
                         ما تو این حوضه بهترینیم !
                     </h2>
-                    <p className="mt-4 mr-10 text-xl font-light w-1/2">
+                    <p className="mt-4 mr-10 text-xl font-light sm:w-1/2">
                         بکارگیری شیوه های نوین در برنامه نویسی وبسایت شما که با
                         ساده کردن مسیر فرایند ها با افزایش فروش و سبک کردن کار
                         کارمندان سود شما را افزایش میدهیم.
