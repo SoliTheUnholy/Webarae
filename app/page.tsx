@@ -19,8 +19,8 @@ export default function Home() {
                     speed={1.0}
                 />
             </div>
-            <div className="absolute z-10 flex w-full snap-y snap-mandatory scroll-p-4 scroll-pt-20 flex-col items-center justify-center scroll-smooth">
-                <FadeContent className="flex h-svh w-80 snap-center snap-always flex-col items-center justify-center gap-4">
+            <div className="absolute scroll-smooth h-svh w-full snap-y snap-mandatory items-center justify-center overflow-y-scroll">
+                <FadeContent className="mx-auto flex h-svh w-80 snap-start snap-always flex-col items-center justify-center gap-4 text-pretty">
                     <AnimatedContent
                         duration={2}
                         animateOpacity
@@ -54,15 +54,54 @@ export default function Home() {
                         </a>
                     </AnimatedContent>
                 </FadeContent>
-                <div className="h-svh w-full p-4">
-                    <h3 className="text-primary mr-10">چرا وب آرای ؟</h3>
-                    <h2 className="mr-10 text-4xl font-bold">
-                        ما تو این حوضه بهترینیم !
+                <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                    <h3 className="text-primary sm:mr-10">چرا وب آرای ؟</h3>
+                    <h2 className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10">
+                        طراحی هدفمند، فراتر از ظاهر
                     </h2>
-                    <p className="mt-4 mr-10 text-xl font-light sm:w-1/2">
-                        بکارگیری شیوه های نوین در برنامه نویسی وبسایت شما که با
-                        ساده کردن مسیر فرایند ها با افزایش فروش و سبک کردن کار
-                        کارمندان سود شما را افزایش میدهیم.
+                    <p className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2">
+                        در طراحی وب‌سایت، همه‌چیز به زیبایی ختم نمی‌شود. ساختار
+                        اصولی، تجربه کاربری روان و دسترسی آسان به محتوا نقش مهمی
+                        در موفقیت یک وب‌سایت دارند. ما با در نظر گرفتن رفتار
+                        کاربران و اهداف کسب‌وکار شما، سایتی طراحی می‌کنیم که
+                        بازدیدکننده را به مشتری تبدیل کند.
+                    </p>
+                </div>
+                <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                    <h3 className="text-primary sm:mr-10">چرا وب آرای ؟</h3>
+                    <h2 className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10">
+                        سازگار با موبایل و بهینه برای گوگل
+                    </h2>
+                    <p className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2">
+                        بخش بزرگی از کاربران از طریق موبایل وارد وب‌سایت
+                        می‌شوند. به همین دلیل تمامی وب‌سایت‌ها به‌صورت واکنش‌گرا
+                        طراحی می‌شوند و در تمامی دستگاه‌ها عملکرد مناسبی دارند.
+                        همچنین اصول اولیه سئو در ساختار سایت رعایت می‌شود تا
+                        شانس دیده‌شدن شما در نتایج جستجو افزایش یابد.
+                    </p>
+                </div>
+                <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                    <h3 className="text-primary sm:mr-10">چرا وب آرای ؟</h3>
+                    <h2 className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10">
+                        طراحی اختصاصی متناسب با برند شما
+                    </h2>
+                    <p className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2">
+                        هر کسب‌وکار هویت خاص خود را دارد و وب‌سایت باید بازتابی
+                        از آن باشد. ما از قالب‌های تکراری استفاده نمی‌کنیم و هر
+                        پروژه را بر اساس نیاز، سلیقه و اهداف شما طراحی می‌کنیم
+                        تا نتیجه نهایی کاملاً منحصربه‌فرد باشد.
+                    </p>
+                </div>
+                <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                    <h3 className="text-primary sm:mr-10">چرا وب آرای ؟</h3>
+                    <h2 className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10">
+                        همراهی و پشتیبانی پس از تحویل
+                    </h2>
+                    <p className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2">
+                        پایان طراحی، آغاز مسیر رشد است. پس از تحویل وب‌سایت نیز
+                        کنار شما هستیم تا با پشتیبانی، آموزش و راهنمایی، بتوانید
+                        بیشترین بهره را از وب‌سایت خود ببرید و با خیال راحت
+                        کسب‌وکار آنلاین‌تان را توسعه دهید.
                     </p>
                 </div>
             </div>
