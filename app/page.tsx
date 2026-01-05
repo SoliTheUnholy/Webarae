@@ -9,9 +9,11 @@ import { ArrowRight, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
+    const router = useRouter();
     const scrollRef = useRef<HTMLDivElement | null>(null);
     const [ready, setReady] = useState(false);
     useEffect(() => {
@@ -81,7 +83,12 @@ export default function Home() {
                         animateOpacity
                         className="grid grid-cols-2 gap-4"
                     >
-                        <LiquidButton className="w-40">
+                        <LiquidButton
+                            onClick={() => {
+                                router.push("/order");
+                            }}
+                            className="w-40"
+                        >
                             <ArrowRight />
                             ثبت سفارش
                         </LiquidButton>
