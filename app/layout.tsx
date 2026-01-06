@@ -10,7 +10,7 @@ export const viewport: Viewport = {
     maximumScale: 1,
     userScalable: false,
     interactiveWidget: "resizes-content",
-    viewportFit: "contain",
+    viewportFit: "cover",
 };
 export const metadata: Metadata = {
     title: "Webarae",

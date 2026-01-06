@@ -70,7 +70,7 @@ const LoginForm = () => {
             setLoading(false);
         });
     }
-    const initialTime = 2 * 1;
+    const initialTime = 30;
     const [timeRemaining, setTimeRemaining] = useState(initialTime);
     const [resend, setResend] = useState(false);
     useEffect(() => {
