@@ -211,7 +211,7 @@ const LoginForm = () => {
                                                         }}
                                                         disabled={!resend}
                                                         variant={"ghost"}
-                                                        className="grow z-20 cursor-pointer rounded-full rounded-l-none border border-l-0"
+                                                        className="z-20 grow cursor-pointer rounded-full rounded-l-none border border-l-0"
                                                         onClick={() => {
                                                             form.setValue(
                                                                 "otp",
