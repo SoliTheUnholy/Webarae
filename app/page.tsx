@@ -64,7 +64,7 @@ export default function Home() {
                 ref={scrollRef}
                 className="absolute h-screen w-full snap-y snap-mandatory items-center justify-center overflow-y-scroll scroll-smooth"
             >
-                <FadeContent className="mx-auto flex h-svh w-80 snap-start snap-always flex-col items-center justify-center gap-4 text-pretty">
+                <FadeContent className="mx-auto flex h-lvh w-80 snap-start snap-always flex-col items-center justify-center gap-4 text-pretty">
                     <AnimatedContent
                         duration={2}
                         animateOpacity
@@ -105,7 +105,7 @@ export default function Home() {
                 </FadeContent>
                 {ready && (
                     <>
-                        <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                        <div className="flex h-lvh w-full snap-start snap-always flex-col items-start justify-center p-4">
                             <SplitText
                                 splitType="words"
                                 ease={"power3.out"}
@@ -154,7 +154,7 @@ export default function Home() {
                                 تبدیل کند."
                             />
                         </div>
-                        <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                        <div className="flex h-lvh w-full snap-start snap-always flex-col items-start justify-center p-4">
                             <SplitText
                                 splitType="words"
                                 ease={"power3.out"}
@@ -203,7 +203,7 @@ export default function Home() {
                                 نتایج جستجو افزایش یابد."
                             />
                         </div>
-                        <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                        <div className="flex h-lvh w-full snap-start snap-always flex-col items-start justify-center p-4">
                             <SplitText
                                 splitType="words"
                                 ease={"power3.out"}
@@ -251,7 +251,7 @@ export default function Home() {
                                 کاملاً منحصربه‌فرد باشد."
                             />
                         </div>
-                        <div className="flex h-svh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                        <div className="flex h-lvh w-full snap-start snap-always flex-col items-start justify-center p-4">
                             <SplitText
                                 splitType="words"
                                 ease={"power3.out"}

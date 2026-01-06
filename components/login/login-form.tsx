@@ -70,7 +70,7 @@ const LoginForm = () => {
             setLoading(false);
         });
     }
-    const initialTime = 2 * 60;
+    const initialTime = 2 * 1;
     const [timeRemaining, setTimeRemaining] = useState(initialTime);
     const [resend, setResend] = useState(false);
     useEffect(() => {
@@ -181,117 +181,109 @@ const LoginForm = () => {
                                             رمز یکبار مصرف
                                         </FormLabel>
                                         <FormMessage className="mx-auto" />
-                                        <div className="flex w-full items-center justify-stretch">
-                                            <Button
-                                                style={{
-                                                    pointerEvents: "auto",
-                                                }}
-                                                disabled={!resend}
-                                                variant={"ghost"}
-                                                className="grow cursor-pointer rounded-full rounded-l-none border border-l-0"
-                                                onClick={() => {
-                                                    form.setValue("otp", "");
-                                                    setTimeRemaining(-1);
-                                                    setResend(false);
-                                                    try {
-                                                        fetch(
-                                                            "https:///api/Sign/SendPhoneNumber",
-                                                            {
-                                                                method: "POST",
-                                                                headers: {
-                                                                    "Content-Type":
-                                                                        "application/json",
-                                                                },
-                                                                body: JSON.stringify(
+                                        <FormControl
+                                            onChange={(e) => {
+                                                if (
+                                                    form.getValues().otp
+                                                        .length === 6
+                                                ) {
+                                                    Submit();
+                                                }
+                                            }}
+                                        >
+                                            <InputOTP
+                                                autoFocus
+                                                inputMode="numeric"
+                                                maxLength={6}
+                                                {...field}
+                                            >
+                                                <InputOTPGroup>
+                                                    <InputOTPSlot index={0} />
+                                                    <InputOTPSlot index={1} />
+                                                    <InputOTPSlot index={2} />
+                                                    <InputOTPSlot index={3} />
+                                                    <InputOTPSlot index={4} />
+                                                    <InputOTPSlot index={5} />
+                                                    <Button
+                                                        style={{
+                                                            pointerEvents:
+                                                                "auto",
+                                                        }}
+                                                        disabled={!resend}
+                                                        variant={"ghost"}
+                                                        className="grow z-20 cursor-pointer rounded-full rounded-l-none border border-l-0"
+                                                        onClick={() => {
+                                                            form.setValue(
+                                                                "otp",
+                                                                "",
+                                                            );
+                                                            setTimeRemaining(
+                                                                -1,
+                                                            );
+                                                            setResend(false);
+                                                            try {
+                                                                fetch(
+                                                                    "https:///api/Sign/SendPhoneNumber",
                                                                     {
-                                                                        PhoneNumber:
-                                                                            form.getValues(
-                                                                                "phone",
-                                                                            ),
+                                                                        method: "POST",
+                                                                        headers:
+                                                                            {
+                                                                                "Content-Type":
+                                                                                    "application/json",
+                                                                            },
+                                                                        body: JSON.stringify(
+                                                                            {
+                                                                                PhoneNumber:
+                                                                                    form.getValues(
+                                                                                        "phone",
+                                                                                    ),
+                                                                            },
+                                                                        ),
                                                                     },
-                                                                ),
-                                                            },
-                                                        ).then(
-                                                            async (
-                                                                response,
-                                                            ) => {
-                                                                if (
-                                                                    response.ok
-                                                                ) {
-                                                                    setTimeRemaining(
-                                                                        initialTime,
-                                                                    );
-                                                                } else {
-                                                                    setResend(
-                                                                        true,
-                                                                    );
-                                                                }
-                                                            },
-                                                        );
-                                                    } catch (error) {
-                                                        setResend(true);
-                                                        console.error(
-                                                            "Error submitting data:",
-                                                            error,
-                                                        );
-                                                    }
-                                                }}
-                                            >
-                                                {timeRemaining != 0 &&
-                                                timeRemaining != -1 ? (
-                                                    minutes +
-                                                    ":" +
-                                                    (seconds <= 9
-                                                        ? "0" + seconds
-                                                        : seconds)
-                                                ) : !resend ? (
-                                                    <>
-                                                        <Loader className="text-muted-foreground animate-spin" />
-                                                    </>
-                                                ) : (
-                                                    "ارسال مجدد"
-                                                )}
-                                            </Button>
-                                            <FormControl
-                                                onChange={(e) => {
-                                                    if (
-                                                        form.getValues().otp
-                                                            .length === 6
-                                                    ) {
-                                                        Submit();
-                                                    }
-                                                }}
-                                            >
-                                                <InputOTP
-                                                    className="flex grow"
-                                                    autoFocus
-                                                    inputMode="numeric"
-                                                    maxLength={6}
-                                                    {...field}
-                                                >
-                                                    <InputOTPGroup className="flex grow">
-                                                        <InputOTPSlot
-                                                            index={0}
-                                                        />
-                                                        <InputOTPSlot
-                                                            index={1}
-                                                        />
-                                                        <InputOTPSlot
-                                                            index={2}
-                                                        />
-                                                        <InputOTPSlot
-                                                            index={3}
-                                                        />
-                                                        <InputOTPSlot
-                                                            index={4}
-                                                        />
-                                                        <InputOTPSlot
-                                                            index={5}
-                                                        />
-                                                    </InputOTPGroup>
-                                                </InputOTP>
-                                            </FormControl>
-                                        </div>
+                                                                ).then(
+                                                                    async (
+                                                                        response,
+                                                                    ) => {
+                                                                        if (
+                                                                            response.ok
+                                                                        ) {
+                                                                            setTimeRemaining(
+                                                                                initialTime,
+                                                                            );
+                                                                        } else {
+                                                                            setResend(
+                                                                                true,
+                                                                            );
+                                                                        }
+                                                                    },
+                                                                );
+                                                            } catch (error) {
+                                                                setResend(true);
+                                                                console.error(
+                                                                    "Error submitting data:",
+                                                                    error,
+                                                                );
+                                                            }
+                                                        }}
+                                                    >
+                                                        {timeRemaining != 0 &&
+                                                        timeRemaining != -1 ? (
+                                                            minutes +
+                                                            ":" +
+                                                            (seconds <= 9
+                                                                ? "0" + seconds
+                                                                : seconds)
+                                                        ) : !resend ? (
+                                                            <>
+                                                                <Loader className="text-muted-foreground animate-spin" />
+                                                            </>
+                                                        ) : (
+                                                            "ارسال مجدد"
+                                                        )}
+                                                    </Button>
+                                                </InputOTPGroup>
+                                            </InputOTP>
+                                        </FormControl>
                                     </FormItem>
                                 )}
                             />
