@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -22,7 +21,15 @@ import {
 } from "@/components/ui/input-otp";
 import { useRouter } from "next/navigation";
 import AnimatedContent from "../AnimatedContent";
-import { Card, CardContent, CardHeader } from "../ui/card";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "../ui/card";
+import SplitText from "@/components/SplitText";
 
 const formSchema = z.object({
     phone: z
@@ -128,8 +135,31 @@ const LoginForm = () => {
             animateOpacity
             className="grid h-full items-center justify-center"
         >
-            <Card className="w-[90vw] max-w-96 rounded-4xl p-4">
-                <CardContent className="p-0 sm:p-4">
+            <Card className="w-[90vw] max-w-96 rounded-4xl">
+                <CardHeader>
+                    <CardTitle>ثبت نام/ورود</CardTitle>
+                    <CardDescription>
+                        <SplitText
+                            splitType="words"
+                            ease={"power3.out"}
+                            delay={100}
+                            duration={1}
+                            threshold={0.1}
+                            from={{ opacity: 0, y: 64 }}
+                            to={{ opacity: 1, y: 0 }}
+                            rootMargin="0"
+                            textAlign="right"
+                            tag="span"
+                            className={`text-primary`}
+                            text={
+                                otp
+                                    ? "رمز پیامک شده را وارد نمایید."
+                                    : "شماره تماس خود را وارد نمایید."
+                            }
+                        />
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
                     <Form {...form}>
                         <form className={`relative grid`}>
                             <FormField
@@ -139,9 +169,6 @@ const LoginForm = () => {
                                     <FormItem
                                         className={`transition-all duration-500 ${otp && "h-0 translate-y-1/2 scale-y-0 opacity-0"}`}
                                     >
-                                        <FormLabel className="mx-auto mb-4 text-2xl">
-                                            ثبت نام/ورود
-                                        </FormLabel>
                                         <FormMessage className="mx-auto" />
                                         <FormControl
                                             onChange={(e) => {
@@ -177,9 +204,6 @@ const LoginForm = () => {
                                     <FormItem
                                         className={`transition-all duration-500 ${!otp && "h-0 translate-y-1/2 scale-y-0 opacity-0"}`}
                                     >
-                                        <FormLabel className="mx-auto mb-4 text-2xl">
-                                            رمز یکبار مصرف
-                                        </FormLabel>
                                         <FormMessage className="mx-auto" />
                                         <FormControl
                                             onChange={(e) => {
@@ -287,32 +311,34 @@ const LoginForm = () => {
                                     </FormItem>
                                 )}
                             />
-                            <Button
-                                className="mt-2 h-10 rounded-full font-semibold"
-                                type="button"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (!otp) {
-                                        SendCode();
-                                    } else {
-                                        Submit();
-                                    }
-                                }}
-                            >
-                                {loading ? (
-                                    <>
-                                        <Loader className="text-muted-foreground mx-2 animate-spin" />
-                                        منتظر بمانید
-                                    </>
-                                ) : !otp ? (
-                                    "ارسال کد تایید"
-                                ) : (
-                                    "ثبت نام"
-                                )}
-                            </Button>
                         </form>
                     </Form>
                 </CardContent>
+                <CardFooter>
+                    <Button
+                        className="grow rounded-full font-semibold"
+                        type="button"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            if (!otp) {
+                                SendCode();
+                            } else {
+                                Submit();
+                            }
+                        }}
+                    >
+                        {loading ? (
+                            <>
+                                <Loader className="text-muted-foreground mx-2 animate-spin" />
+                                منتظر بمانید
+                            </>
+                        ) : !otp ? (
+                            "ارسال کد تایید"
+                        ) : (
+                            "ثبت نام"
+                        )}
+                    </Button>
+                </CardFooter>
             </Card>
         </AnimatedContent>
     );
