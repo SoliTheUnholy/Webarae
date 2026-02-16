@@ -35,7 +35,7 @@ const formSchema = z.object({
     phone: z
         .string()
         .regex(
-            new RegExp(/^(\+98|0)?9\d{9}$/),
+            new RegExp(/^(\+98|98|0)?9\d{9}$/),
             "شماره را به درستی وارد نمایید.",
         ),
     otp: z.string().min(6, "رمز یکبار مصرف را وارد کنید."),
