@@ -1,5 +1,6 @@
 "use client";
 import AnimatedContent from "@/components/AnimatedContent";
+import SplitText from "@/components/SplitText";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -12,8 +13,10 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
+/* ---------------- TYPES ---------------- */
 type Key = "type" | "size" | "functionality" | "scale" | "design" | "speed";
 
 type ProjectType =
@@ -54,6 +57,8 @@ type Page = {
     description: string;
     options: Option[];
 };
+
+/* ---------------- DATA ---------------- */
 
 export const pages: Page[] = [
     {
@@ -145,13 +150,44 @@ export const pages: Page[] = [
         ],
     },
 ];
+/* ---------------- COMPONENT ---------------- */
 
 const Orders = () => {
-    const TOMAN_RATE = 100000;
+    const TOMAN_RATE = 160000;
+    const [animate, setAnimate] = useState(true);
     const router = useRouter();
+
     const [step, setStep] = useState(0);
     const [price, setPrice] = useState(0);
     const [answers, setAnswers] = useState<QuoteAnswers>({});
+
+    /* ---------- CARD SIZE ANIMATION ---------- */
+
+    const cardRef = useRef<HTMLDivElement>(null);
+    const prevHeight = useRef<number>(0);
+
+    useLayoutEffect(() => {
+        const el = cardRef.current;
+        if (!el) return;
+
+        const newHeight = el.offsetHeight;
+
+        if (prevHeight.current) {
+            gsap.fromTo(
+                el,
+                { height: prevHeight.current },
+                {
+                    height: newHeight,
+                    duration: 0.6,
+                    ease: "power3.inOut",
+                },
+            );
+        }
+
+        prevHeight.current = newHeight;
+    }, [step]);
+
+    /* ---------- PRICING ---------- */
 
     const pricing = {
         type: {
@@ -193,65 +229,124 @@ const Orders = () => {
         setPrice(toman);
     }, [answers]);
 
+    /* ---------- NAVIGATION ---------- */
+
+    const next = (label: string) => {
+        setAnimate(false);
+        setTimeout(() => {
+            setAnswers((prev) => ({
+                ...prev,
+                [pages[step].key]: label,
+            }));
+            setStep((s) => s + 1);
+            setAnimate(true);
+        }, 1000);
+    };
+
+    const back = () => {
+        if (!step) return;
+
+        setAnswers((prev) => {
+            const copy = { ...prev };
+            delete copy[pages[step - 1].key];
+            return copy;
+        });
+
+        setStep((s) => s - 1);
+    };
+
+    /* ---------- UI ---------- */
+
     return (
         <AnimatedContent
-            duration={2}
+            duration={1.2}
             animateOpacity
-            className=" flex h-full w-full flex-col items-center"
+            className="flex h-full w-full flex-col items-center"
         >
-            <div className="flex grow mt-20 flex-col items-center justify-center">
+            <div className="mt-20 flex grow flex-col items-center justify-center">
                 <Card
-                    key={1}
-                    className="w-[90vw] max-w-96 justify-self-center rounded-4xl"
+                    ref={cardRef}
+                    key={step}
+                    className="w-[90vw] max-w-96 overflow-hidden rounded-4xl"
                 >
-                    {step < 6 ? (
+                    {step < pages.length ? (
                         <>
                             <CardHeader>
-                                <CardTitle>{pages[step].title}</CardTitle>
-                                <CardDescription>
-                                    {pages[step].description}
-                                </CardDescription>
+                                <AnimatedContent visible={animate}>
+                                    <CardTitle>
+                                        <SplitText
+                                            splitType="words"
+                                            tag="h3"
+                                            text={pages[step].title}
+                                        />
+                                    </CardTitle>
+                                    <CardDescription>
+                                        <SplitText
+                                            splitType="words"
+                                            tag="p"
+                                            text={pages[step].description}
+                                            delay={20}
+                                        />
+                                    </CardDescription>
+                                </AnimatedContent>
                             </CardHeader>
 
+                            {/* OPTIONS */}
                             <CardContent className="grid gap-2">
                                 {pages[step].options.map((item, index) => (
                                     <AnimatedContent
+                                        visible={animate}
+                                        disappearAfter={index * 0.1}
+                                        key={item.label}
+                                        threshold={0}
                                         direction="horizontal"
-                                        key={Math.random()}
+                                        delay={index * 0.1}
                                         className="grid"
+                                        animateOpacity
                                     >
                                         <Button
                                             variant="outline"
-                                            className="flex h-auto justify-start gap-4 rounded-xl text-right"
-                                            onClick={() => {
-                                                setAnswers({
-                                                    ...answers,
-                                                    [pages[step].key]:
-                                                        item.label,
-                                                });
-                                                setStep(step + 1);
-                                            }}
+                                            className="flex h-auto justify-start gap-4 rounded-full text-right"
+                                            onClick={() => next(item.label)}
                                         >
                                             <span className="text-primary text-2xl">
                                                 {index + 1}
                                             </span>
+
                                             <div className="flex flex-col gap-1">
-                                                <span className="font-medium">
-                                                    {item.label}
-                                                </span>
-                                                <span className="text-muted-foreground text-xs">
-                                                    {item.description}
-                                                </span>
+                                                <SplitText
+                                                    threshold={0}
+                                                    splitType="words"
+                                                    textAlign="right"
+                                                    tag="span"
+                                                    className="font-medium"
+                                                    text={item.label}
+                                                    delay={50 * index}
+                                                />
+                                                <SplitText
+                                                    threshold={0}
+                                                    splitType="words"
+                                                    tag="span"
+                                                    className="text-muted-foreground text-xs"
+                                                    text={item.description}
+                                                    delay={50 * index}
+                                                />
                                             </div>
                                         </Button>
                                     </AnimatedContent>
                                 ))}
                             </CardContent>
 
+                            {/* FOOTER */}
                             <CardFooter className="grid">
-                                {step ? (
-                                    <AnimatedContent className="flex justify-between">
-                                        <span className="flex flex-col">
+                                {step > 0 && (
+                                    <AnimatedContent
+                                        reverse
+                                        visible={animate}
+                                        animateOpacity
+                                        className="flex justify-between"
+                                    >
+                                        <div className="flex flex-col">
                                             <span className="text-muted text-xs">
                                                 هزینه تخمینی
                                             </span>
@@ -263,40 +358,52 @@ const Orders = () => {
                                                     تومان
                                                 </span>
                                             </span>
-                                        </span>
+                                        </div>
                                         <Button
-                                            onClick={() => {
-                                                if (step) {
-                                                    setStep(step - 1);
-                                                }
-                                            }}
-                                            className="h-10 rounded-xl"
+                                            onClick={back}
+                                            className="h-10 rounded-2xl"
                                         >
                                             مرحله قبل
                                             <ArrowLeft />
                                         </Button>
                                     </AnimatedContent>
-                                ) : (
-                                    ""
                                 )}
                             </CardFooter>
                         </>
                     ) : (
                         <>
+                            {/* SUMMARY */}
                             <CardHeader>
-                                <CardTitle>جمع بندی</CardTitle>
+                                <CardTitle>
+                                    <SplitText
+                                        splitType="words"
+                                        tag="h3"
+                                        text="جمع بندی"
+                                    />
+                                </CardTitle>
                                 <CardDescription>
-                                    خلاصه ای سفارش شما و هزینه تخمینی
+                                    <SplitText
+                                        splitType="words"
+                                        tag="p"
+                                        text="خلاصه سفارش شما و هزینه تخمینی"
+                                    />
                                 </CardDescription>
                             </CardHeader>
 
-                            <CardContent>
-                                {pages.map((item, index) => (
-                                    <AnimatedContent direction="horizontal" key={index} className="grid">
-                                        <span className="text-muted text-xs">
-                                            {item.title}
-                                        </span>
-                                        <span>{answers[item.key]}</span>
+                            <CardContent className="grid gap-3">
+                                {pages.map((item, i) => (
+                                    <AnimatedContent
+                                        animateOpacity
+                                        key={i}
+                                        direction="horizontal"
+                                        delay={i * 0.1}
+                                    >
+                                        <div className="grid text-right">
+                                            <span className="text-muted text-xs">
+                                                {item.title}
+                                            </span>
+                                            <span>{answers[item.key]}</span>
+                                        </div>
                                     </AnimatedContent>
                                 ))}
                             </CardContent>
@@ -306,14 +413,12 @@ const Orders = () => {
                                     <span className="text-muted text-xs">
                                         هزینه تخمینی
                                     </span>
-                                    <span className="flex items-center gap-1">
-                                        <span className="text-primary text-2xl font-bold">
-                                            {price.toLocaleString()}
-                                        </span>
-                                        <span className="text-xs">تومان</span>
+                                    <span className="text-primary text-2xl font-bold">
+                                        {price.toLocaleString()} تومان
                                     </span>
-                                </span>{" "}
-                                <Button className="rounded-xl">
+                                </span>
+
+                                <Button className="rounded-2xl">
                                     تکمیل سفارش
                                 </Button>
                             </CardFooter>
@@ -321,9 +426,13 @@ const Orders = () => {
                     )}
                 </Card>
             </div>
-            <div className="end-0 grid w-72 origin-bottom gap-4 py-12 text-center transition-all duration-300 ease-in-out">
-                <Progress value={((step + 1) * 100) / 7} />
-                <p className="text-foreground text-sm">مرحله {step + 1} از 7</p>
+
+            {/* PROGRESS */}
+            <div className="grid w-72 origin-bottom gap-4 py-12 text-center">
+                <Progress value={((step + 1) * 100) / (pages.length + 1)} />
+                <p className="text-foreground text-sm">
+                    مرحله {step + 1} از {pages.length + 1}
+                </p>
             </div>
         </AnimatedContent>
     );
