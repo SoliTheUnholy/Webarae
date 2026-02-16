@@ -245,14 +245,16 @@ const Orders = () => {
 
     const back = () => {
         if (!step) return;
-
-        setAnswers((prev) => {
-            const copy = { ...prev };
-            delete copy[pages[step - 1].key];
-            return copy;
-        });
-
-        setStep((s) => s - 1);
+        setAnimate(false);
+        setTimeout(() => {
+            setAnswers((prev) => {
+                const copy = { ...prev };
+                delete copy[pages[step - 1].key];
+                return copy;
+            });
+            setStep((s) => s - 1);
+            setAnimate(true);
+        }, 1000);
     };
 
     /* ---------- UI ---------- */
@@ -272,7 +274,7 @@ const Orders = () => {
                     {step < pages.length ? (
                         <>
                             <CardHeader>
-                                <AnimatedContent visible={animate}>
+                                <AnimatedContent animateOpacity visible={animate}>
                                     <CardTitle>
                                         <SplitText
                                             splitType="words"
@@ -298,7 +300,6 @@ const Orders = () => {
                                         visible={animate}
                                         disappearAfter={index * 0.1}
                                         key={item.label}
-                                        threshold={0}
                                         direction="horizontal"
                                         delay={index * 0.1}
                                         className="grid"
@@ -306,7 +307,8 @@ const Orders = () => {
                                     >
                                         <Button
                                             variant="outline"
-                                            className="flex h-auto justify-start gap-4 rounded-full text-right"
+                                            className="flex h-auto justify-start gap-4 rounded-full text-right transition-all duration-500"
+                                            disabled={!animate}
                                             onClick={() => next(item.label)}
                                         >
                                             <span className="text-primary text-2xl">
@@ -315,7 +317,6 @@ const Orders = () => {
 
                                             <div className="flex flex-col gap-1">
                                                 <SplitText
-                                                    threshold={0}
                                                     splitType="words"
                                                     textAlign="right"
                                                     tag="span"
@@ -324,7 +325,6 @@ const Orders = () => {
                                                     delay={50 * index}
                                                 />
                                                 <SplitText
-                                                    threshold={0}
                                                     splitType="words"
                                                     tag="span"
                                                     className="text-muted-foreground text-xs"
@@ -360,8 +360,9 @@ const Orders = () => {
                                             </span>
                                         </div>
                                         <Button
+                                            disabled={!animate}
                                             onClick={back}
-                                            className="h-10 rounded-2xl"
+                                            className="h-10 rounded-2xl transition-all duration-500"
                                         >
                                             مرحله قبل
                                             <ArrowLeft />
@@ -374,20 +375,22 @@ const Orders = () => {
                         <>
                             {/* SUMMARY */}
                             <CardHeader>
-                                <CardTitle>
-                                    <SplitText
-                                        splitType="words"
-                                        tag="h3"
-                                        text="جمع بندی"
-                                    />
-                                </CardTitle>
-                                <CardDescription>
-                                    <SplitText
-                                        splitType="words"
-                                        tag="p"
-                                        text="خلاصه سفارش شما و هزینه تخمینی"
-                                    />
-                                </CardDescription>
+                                <AnimatedContent animateOpacity visible={animate}>
+                                    <CardTitle>
+                                        <SplitText
+                                            splitType="words"
+                                            tag="h3"
+                                            text="جمع بندی"
+                                        />
+                                    </CardTitle>
+                                    <CardDescription>
+                                        <SplitText
+                                            splitType="words"
+                                            tag="p"
+                                            text="خلاصه سفارش شما و هزینه تخمینی"
+                                        />
+                                    </CardDescription>
+                                </AnimatedContent>
                             </CardHeader>
 
                             <CardContent className="grid gap-3">
