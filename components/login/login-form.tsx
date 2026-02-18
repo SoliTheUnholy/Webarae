@@ -135,22 +135,29 @@ const LoginForm = () => {
             animateOpacity
             className="grid h-full items-center justify-center"
         >
-            <Card className="w-[90vw] max-w-96 rounded-4xl">
-                <CardHeader>
-                    <CardTitle>ثبت نام/ورود</CardTitle>
+            <Card className="w-[90vw] max-w-96 gap-2 rounded-4xl">
+                <CardHeader key={otp.toString()} >
+                    <CardTitle>
+                        <SplitText
+                            splitType="words"
+                            ease={"power3.out"}
+                            delay={100}
+                            duration={1}
+                            rootMargin="0"
+                            textAlign="right"
+                            tag="span"
+                            text={otp ? "رمز" : "شماره تماس"}
+                        />
+                    </CardTitle>
                     <CardDescription>
                         <SplitText
                             splitType="words"
                             ease={"power3.out"}
                             delay={100}
                             duration={1}
-                            threshold={0.1}
-                            from={{ opacity: 0, y: 64 }}
-                            to={{ opacity: 1, y: 0 }}
                             rootMargin="0"
                             textAlign="right"
                             tag="span"
-                            className={`text-primary`}
                             text={
                                 otp
                                     ? "رمز پیامک شده را وارد نمایید."
@@ -189,7 +196,7 @@ const LoginForm = () => {
                                                 autoFocus
                                                 type="number"
                                                 inputMode="numeric"
-                                                className="h-10 rounded-full text-center placeholder:text-center"
+                                                className="h-10 rounded-2xl text-center placeholder:text-center"
                                                 placeholder="09xxxx1234"
                                                 {...field}
                                             />
@@ -229,13 +236,14 @@ const LoginForm = () => {
                                                     <InputOTPSlot index={4} />
                                                     <InputOTPSlot index={5} />
                                                     <Button
+                                                        size={"lg"}
                                                         style={{
                                                             pointerEvents:
                                                                 "auto",
                                                         }}
                                                         disabled={!resend}
                                                         variant={"ghost"}
-                                                        className="z-20 grow cursor-pointer rounded-full rounded-l-none border border-l-0"
+                                                        className="z-20 grow cursor-pointer rounded-2xl rounded-l-none border border-l-0"
                                                         onClick={() => {
                                                             form.setValue(
                                                                 "otp",
@@ -290,20 +298,25 @@ const LoginForm = () => {
                                                             }
                                                         }}
                                                     >
-                                                        {timeRemaining != 0 &&
-                                                        timeRemaining != -1 ? (
-                                                            minutes +
-                                                            ":" +
-                                                            (seconds <= 9
-                                                                ? "0" + seconds
-                                                                : seconds)
-                                                        ) : !resend ? (
-                                                            <>
-                                                                <Loader className="text-muted-foreground animate-spin" />
-                                                            </>
-                                                        ) : (
-                                                            "ارسال مجدد"
-                                                        )}
+                                                        <span className="w-12 flex items-center justify-center">
+                                                            {timeRemaining !=
+                                                                0 &&
+                                                            timeRemaining !=
+                                                                -1 ? (
+                                                                minutes +
+                                                                ":" +
+                                                                (seconds <= 9
+                                                                    ? "0" +
+                                                                      seconds
+                                                                    : seconds)
+                                                            ) : !resend ? (
+                                                                <>
+                                                                    <Loader className="text-muted-foreground animate-spin" />
+                                                                </>
+                                                            ) : (
+                                                                "ارسال مجدد"
+                                                            )}
+                                                        </span>
                                                     </Button>
                                                 </InputOTPGroup>
                                             </InputOTP>
@@ -316,7 +329,8 @@ const LoginForm = () => {
                 </CardContent>
                 <CardFooter>
                     <Button
-                        className="grow rounded-full font-semibold"
+                        size={"lg"}
+                        className="grow rounded-2xl font-semibold"
                         type="button"
                         onClick={(e) => {
                             e.preventDefault();

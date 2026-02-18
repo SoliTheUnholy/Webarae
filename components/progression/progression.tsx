@@ -340,7 +340,7 @@ function ProgressionBar({
         <div
             className={cn(
                 direction === "horizontal" ? "w-full" : "h-full",
-                "bg-muted-foreground/20 overflow-hidden rounded-full",
+                "bg-muted-foreground/20 overflow-hidden rounded-2xl",
                 className,
             )}
             style={
@@ -352,7 +352,7 @@ function ProgressionBar({
             <div
                 className={cn(
                     direction === "horizontal" ? "h-full" : "w-full",
-                    "bg-primary rounded-full transition-all duration-300 ease-out",
+                    "bg-primary rounded-2xl transition-all duration-300 ease-out",
                     barClassName,
                 )}
                 style={

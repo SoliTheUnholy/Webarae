@@ -476,7 +476,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     aria-label="Main navigation header"
                 >
                     <AnimatedContent
-                        className="flex w-full items-center justify-between gap-2 p-4"
+                        className="flex w-full items-center justify-between gap-2 p-6"
                         distance={150}
                         direction="vertical"
                         reverse={true}
@@ -496,23 +496,22 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                 aria-controls="staggered-menu-panel"
                                 onClick={toggleMenu}
                             >
-                                
                                 <Menu
                                     ref={menuIconRef}
-                                    className="absolute h-5 w-5 "
+                                    className="absolute h-5 w-5"
                                 />
                                 <X
                                     ref={crossIconRef}
-                                    className="absolute  h-5 w-5"
+                                    className="absolute h-5 w-5"
                                 />
                             </LiquidButton>
                             {/* <Separator orientation="vertical" /> */}
                             <LoginButton />
+                            <ThemeToggle />
                         </div>
                         <div className="pointer-events-auto flex h-12 items-center justify-center gap-2 select-none">
                             <Logo />
                             {/* <Separator orientation="vertical" /> */}
-                            <ThemeToggle />
                         </div>
                     </AnimatedContent>
                 </header>

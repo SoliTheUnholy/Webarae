@@ -273,8 +273,11 @@ const Orders = () => {
                 >
                     {step < pages.length ? (
                         <>
-                            <CardHeader>
-                                <AnimatedContent animateOpacity visible={animate}>
+                            <CardHeader className="gap-0">
+                                <AnimatedContent
+                                    animateOpacity
+                                    visible={animate}
+                                >
                                     <CardTitle>
                                         <SplitText
                                             splitType="words"
@@ -307,7 +310,7 @@ const Orders = () => {
                                     >
                                         <Button
                                             variant="outline"
-                                            className="flex h-auto justify-start gap-4 rounded-full text-right transition-all duration-500"
+                                            className="flex h-auto justify-start gap-4 rounded-2xl text-right transition-all duration-500"
                                             disabled={!animate}
                                             onClick={() => next(item.label)}
                                         >
@@ -338,8 +341,8 @@ const Orders = () => {
                             </CardContent>
 
                             {/* FOOTER */}
-                            <CardFooter className="grid">
-                                {step > 0 && (
+                            {step > 0 && (
+                                <CardFooter className="grid">
                                     <AnimatedContent
                                         reverse
                                         visible={animate}
@@ -360,6 +363,7 @@ const Orders = () => {
                                             </span>
                                         </div>
                                         <Button
+                                            size={"lg"}
                                             disabled={!animate}
                                             onClick={back}
                                             className="h-10 rounded-2xl transition-all duration-500"
@@ -368,14 +372,17 @@ const Orders = () => {
                                             <ArrowLeft />
                                         </Button>
                                     </AnimatedContent>
-                                )}
-                            </CardFooter>
+                                </CardFooter>
+                            )}
                         </>
                     ) : (
                         <>
                             {/* SUMMARY */}
-                            <CardHeader>
-                                <AnimatedContent animateOpacity visible={animate}>
+                            <CardHeader className="gap-0">
+                                <AnimatedContent
+                                    animateOpacity
+                                    visible={animate}
+                                >
                                     <CardTitle>
                                         <SplitText
                                             splitType="words"
@@ -411,7 +418,7 @@ const Orders = () => {
                                 ))}
                             </CardContent>
 
-                            <CardFooter className="mx-auto grid gap-2 text-center">
+                            <CardFooter className="grid gap-2 text-center">
                                 <span className="flex flex-col">
                                     <span className="text-muted text-xs">
                                         هزینه تخمینی
@@ -421,7 +428,10 @@ const Orders = () => {
                                     </span>
                                 </span>
 
-                                <Button className="rounded-2xl">
+                                <Button
+                                    size={"lg"}
+                                    className="w-full rounded-2xl"
+                                >
                                     تکمیل سفارش
                                 </Button>
                             </CardFooter>

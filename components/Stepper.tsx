@@ -172,7 +172,7 @@ export default function Stepper({
                                 onClick={
                                     isLastStep ? handleComplete : handleNext
                                 }
-                                className="flex items-center justify-center rounded-full px-3.5 py-1.5 font-medium tracking-tight transition duration-350 hover:cursor-pointer"
+                                className="flex items-center justify-center rounded-2xl px-3.5 py-1.5 font-medium tracking-tight transition duration-350 hover:cursor-pointer"
                                 {...nextButtonProps}
                             >
                                 {isLastStep ? "ثبت سفارش" : nextButtonText}
@@ -334,12 +334,12 @@ function StepIndicator({
                     },
                 }}
                 transition={{ duration: 0.3 }}
-                className="flex h-8 w-8 items-center justify-center rounded-full font-semibold"
+                className="flex h-8 w-8 items-center justify-center rounded-2xl font-semibold"
             >
                 {status === "complete" ? (
                     <CheckIcon className="text-background h-5 w-5" />
                 ) : status === "active" ? (
-                    <div className="bg-background h-3 w-3 rounded-full" />
+                    <div className="bg-background h-3 w-3 rounded-2xl" />
                 ) : (
                     <span className="text-sm">{step}</span>
                 )}

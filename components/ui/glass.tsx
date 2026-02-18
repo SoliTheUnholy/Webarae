@@ -18,7 +18,7 @@ import { LiquidFilter, LiquidFilterProps } from "./filter";
 
 /**
  * Safely parse border radius from computed styles, handling edge cases like
- * scientific notation (from rounded-full), percentages, and invalid values.
+ * scientific notation (from rounded-2xl), percentages, and invalid values.
  * For very large values or scientific notation, returns half of the smallest dimension.
  */
 const getBorderRadius = (element: HTMLElement, rect: DOMRect): number => {
@@ -35,13 +35,13 @@ const getBorderRadius = (element: HTMLElement, rect: DOMRect): number => {
         return 0;
     }
 
-    // Handle scientific notation (e.g., '1.67772e+07px' from rounded-full) or very large values
+    // Handle scientific notation (e.g., '1.67772e+07px' from rounded-2xl) or very large values
     if (
         parsedRadius > 9999 ||
         rawRadius.includes("e+") ||
         rawRadius.includes("E+")
     ) {
-        // For very large values (like rounded-full), return half of smallest dimension
+        // For very large values (like rounded-2xl), return half of smallest dimension
         return Math.min(rect.width, rect.height) / 2;
     }
 

@@ -178,7 +178,7 @@ const SplitText: React.FC<SplitTextProps> = ({
             wordWrap: "break-word",
             willChange: "transform, opacity",
         };
-        const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
+        const classes = `split-parent text-justify *:align-text-top overflow-hidden text-pretty inline-block  ${className}`;
         const Tag = (tag || "p") as React.ElementType;
 
         return (
@@ -192,4 +192,4 @@ const SplitText: React.FC<SplitTextProps> = ({
     return renderTag();
 };
 
-export default SplitText;
+export default SplitText;   

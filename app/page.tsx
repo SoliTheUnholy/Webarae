@@ -64,7 +64,7 @@ export default function Home() {
                 ref={scrollRef}
                 className="absolute h-screen w-full snap-y snap-mandatory items-center justify-center overflow-y-scroll scroll-smooth"
             >
-                <FadeContent className="mx-auto flex h-lvh w-80 snap-start snap-always flex-col items-center justify-center gap-4 text-pretty">
+                <FadeContent className="mx-auto flex h-lvh w-80 snap-start snap-always flex-col items-center justify-center gap-4">
                     <AnimatedContent
                         duration={2}
                         animateOpacity
@@ -73,7 +73,7 @@ export default function Home() {
                         <h1 className="text-center text-6xl font-black">
                             تجربه ای فراتر از کد
                         </h1>
-                        <h2 className="text-center text-2xl font-light text-pretty">
+                        <h2 className="text-center text-2xl font-light">
                             طراحی و توسعه وب سایت و وب اپلیکیشن های مدرن با
                             جدیدترین تکنولوژی ها
                         </h2>
@@ -95,7 +95,7 @@ export default function Home() {
                         <a href="tel:+989025206321">
                             <Button
                                 variant={"default"}
-                                className="h-12 w-40 rounded-full"
+                                className="h-12 w-40 rounded-2xl"
                             >
                                 <Phone />
                                 مشاوره تخصصی
@@ -131,7 +131,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10"
+                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
                                 text="طراحی هدفمند، فراتر از ظاهر"
                             />
                             <SplitText
@@ -145,7 +145,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="در طراحی وب‌سایت، همه‌چیز به زیبایی ختم نمی‌شود.
                                 ساختار اصولی، تجربه کاربری روان و دسترسی آسان به
                                 محتوا نقش مهمی در موفقیت یک وب‌سایت دارند. ما با
@@ -180,7 +180,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10"
+                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
                                 text="سازگار با موبایل و بهینه برای گوگل"
                             />
                             <SplitText
@@ -194,7 +194,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="بخش بزرگی از کاربران از طریق موبایل وارد وب‌سایت
                                 می‌شوند. به همین دلیل تمامی وب‌سایت‌ها به‌صورت
                                 واکنش‌گرا طراحی می‌شوند و در تمامی دستگاه‌ها
@@ -229,7 +229,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10"
+                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
                                 text="طراحی اختصاصی متناسب با برند شما"
                             />
                             <SplitText
@@ -243,7 +243,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="هر کسب‌وکار هویت خاص خود را دارد و وب‌سایت باید
                                 بازتابی از آن باشد. ما از قالب‌های تکراری
                                 استفاده نمی‌کنیم و هر پروژه را بر اساس نیاز،
@@ -277,7 +277,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold text-pretty sm:mr-10"
+                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
                                 text="همراهی و پشتیبانی پس از تحویل"
                             />
                             <SplitText
@@ -291,7 +291,7 @@ export default function Home() {
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light text-pretty sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="پایان طراحی، آغاز مسیر رشد است. پس از تحویل
                                 وب‌سایت نیز کنار شما هستیم تا با پشتیبانی، آموزش
                                 و راهنمایی، بتوانید بیشترین بهره را از وب‌سایت
