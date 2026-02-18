@@ -13,8 +13,8 @@ export default function LiquidButton({
 }) {
     return (
         <Button
-            variant={"outline"}
-            className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl !backdrop-blur-md md:rounded-xl ${className}`}
+        variant={"secondary"}
+            className={`flex h-12 w-12 bg cursor-pointer items-center justify-center rounded-2xl !backdrop-blur-md md:rounded-xl ${className}`}
             onClick={onClick}
         >
             {children}

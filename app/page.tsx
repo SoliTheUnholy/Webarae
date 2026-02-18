@@ -51,7 +51,7 @@ export default function Home() {
     return (
         <>
             <div
-                className={`fixed h-full w-full transition-all duration-500 dark:invert`}
+                className={`fixed h-full w-full transition-all duration-500 dark:invert dark:hue-rotate-180`}
             >
                 <Iridescence
                     color={[1, 1, 1]}
