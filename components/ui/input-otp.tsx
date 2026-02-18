@@ -31,7 +31,7 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="input-otp-group"
             dir="ltr"
-            className={cn("flex items-center grow", className)}
+            className={cn("flex items-center grow ", className)}
             {...props}
         />
     );
@@ -53,14 +53,14 @@ function InputOTPSlot({
             data-slot="input-otp-slot"
             data-active={isActive}
             className={cn(
-                "data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-10 grow items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-2xl first:border-l data-[active=true]:z-10 data-[active=true]:ring-[3px] sm:w-9",
+                "data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-10 grow items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-xl first:border-l data-[active=true]:z-10 data-[active=true]:ring-[3px] sm:w-9",
                 className,
             )}
             {...props}
         >
             {char}
             {hasFakeCaret && (
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                <div className="pointer-events-none w-full absolute border-b-fuchsia-800 inset-0 flex items-center justify-center">
                     <div className="animate-caret-blink bg-foreground h-4 w-px duration-1000" />
                 </div>
             )}

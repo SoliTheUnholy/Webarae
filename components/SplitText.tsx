@@ -27,7 +27,7 @@ const SplitText: React.FC<SplitTextProps> = ({
     text,
     className = "",
     delay = 50,
-    duration = 1.25,
+    duration = 0.75,
     ease = "power3.out",
     splitType = "chars",
     from = { opacity: 0, y: 40 },
@@ -178,7 +178,7 @@ const SplitText: React.FC<SplitTextProps> = ({
             wordWrap: "break-word",
             willChange: "transform, opacity",
         };
-        const classes = `split-parent text-justify *:align-text-top overflow-hidden text-pretty inline-block  ${className}`;
+        const classes = `split-parent  text-justify *:align-text-top overflow-hidden text-pretty inline-block whitespace-normal ${className}`;
         const Tag = (tag || "p") as React.ElementType;
 
         return (

@@ -8,7 +8,7 @@ export default function Login() {
     return (
         <>
             <div
-                className={`bg-background fixed h-full w-full opacity-50 transition-all duration-500`}
+                className={`bg-background  fixed h-full w-full opacity-50 transition-all duration-500`}
             >
                 <ColorBends
                     speed={0.1}

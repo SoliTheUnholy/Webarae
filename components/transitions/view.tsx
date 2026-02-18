@@ -112,7 +112,7 @@ export default function View({
                 </motion.div>
                 <motion.div
                     {...animate(slide)}
-                    className="bg-muted fixed top-0 left-0 h-[100dvh] w-full rounded-[40px] bg-clip-content p-2"
+                    className="bg-muted fixed top-0 left-0 h-[100dvh] w-full rounded-[38px] bg-clip-content p-2"
                 />
             </motion.div>
         </AnimatePresence>

@@ -3,6 +3,9 @@ import "./globals.css";
 import View from "@/components/transitions/view";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import type { Viewport } from "next";
+import { Inter } from "next/font/google";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -23,7 +26,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html dir="rtl" lang="en" suppressHydrationWarning>
+        <html dir="rtl" lang="en" suppressHydrationWarning className={inter.variable}>
             <body className={`bg-background antialiased`}>
                 <ThemeProvider attribute="class" themes={["dark", "light"]}>
                     <View>{children}</View>

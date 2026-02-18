@@ -278,7 +278,7 @@ export const LiquidSlider: React.FC<LiquidSliderProps> = ({
                         onMouseDown={handlePointerDown}
                         onMouseUp={handlePointerUp}
                     >
-                        <div className="h-full w-full overflow-hidden rounded-2xl">
+                        <div className="h-full w-full overflow-hidden rounded-xl">
                             <motion.div
                                 style={{
                                     top: 0,

@@ -31,12 +31,12 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     distance = 33,
     direction = "vertical",
     reverse = false,
-    duration = 0.8,
+    duration = 0.5,
     ease = "power3.out",
     initialOpacity = 0,
     animateOpacity = true,
     visible = true,
-    scale = 0.9,
+    scale = 1,
     threshold = 0,
     delay = 0,
     disappearAfter = 0,
@@ -126,13 +126,11 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
         disappearDuration,
         disappearEase,
         onComplete,
-        onDisappearanceComplete,
     ]);
     useEffect(() => {
         const el = ref.current;
         if (!el) return;
         const axis = direction === "horizontal" ? "x" : "y";
-
         if (!visible) {
             gsap.to(el, {
                 [axis]: reverse ? distance : -distance,

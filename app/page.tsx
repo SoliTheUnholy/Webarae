@@ -62,7 +62,7 @@ export default function Home() {
             </div>
             <div
                 ref={scrollRef}
-                className="absolute h-screen w-full snap-y snap-mandatory items-center justify-center overflow-y-scroll scroll-smooth"
+                className="absolute h-screen w-full snap-y snap-mandatory items-center justify-center overflow-y-scroll scroll-smooth p-4 md:p-6"
             >
                 <FadeContent className="mx-auto flex h-lvh w-80 snap-start snap-always flex-col items-center justify-center gap-4">
                     <AnimatedContent
@@ -83,19 +83,20 @@ export default function Home() {
                         animateOpacity
                         className="grid grid-cols-2 gap-4"
                     >
-                        <LiquidButton
+                        <Button
+                            variant={"secondary"}
                             onClick={() => {
                                 router.push("/order");
                             }}
-                            className="w-40"
+                            className="h-12 w-40 rounded-xl"
                         >
                             <ArrowRight />
                             ثبت سفارش
-                        </LiquidButton>
+                        </Button>
                         <a href="tel:+989025206321">
                             <Button
                                 variant={"default"}
-                                className="h-12 w-40 rounded-2xl"
+                                className="h-12 w-40 rounded-xl"
                             >
                                 <Phone />
                                 مشاوره تخصصی
@@ -105,19 +106,18 @@ export default function Home() {
                 </FadeContent>
                 {ready && (
                     <>
-                        <div className="flex h-lvh w-full snap-start snap-always flex-col items-start justify-center p-4">
+                        <div className="flex h-lvh w-full snap-start snap-always flex-col items-start justify-center">
                             <SplitText
                                 splitType="words"
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="span"
-                                className="text-primary sm:mr-10"
+                                className="text-primary mr-0 sm:mr-10"
                                 text="چرا وب آرای ؟"
                             />
                             <SplitText
@@ -125,13 +125,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
-                                tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
+                                tag="h3"
+                                className="mx-auto mt-2 mr-0 text-4xl font-bold sm:mr-10"
                                 text="طراحی هدفمند، فراتر از ظاهر"
                             />
                             <SplitText
@@ -139,13 +138,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={500}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 mr-0 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="در طراحی وب‌سایت، همه‌چیز به زیبایی ختم نمی‌شود.
                                 ساختار اصولی، تجربه کاربری روان و دسترسی آسان به
                                 محتوا نقش مهمی در موفقیت یک وب‌سایت دارند. ما با
@@ -160,13 +158,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="span"
-                                className="text-primary sm:mr-10"
+                                className="text-primary mr-0 sm:mr-10"
                                 text="چرا وب آرای ؟"
                             />
                             <SplitText
@@ -174,13 +171,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
+                                className="mx-auto mt-2 mr-0 text-4xl font-bold sm:mr-10"
                                 text="سازگار با موبایل و بهینه برای گوگل"
                             />
                             <SplitText
@@ -188,13 +184,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={500}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 mr-0 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="بخش بزرگی از کاربران از طریق موبایل وارد وب‌سایت
                                 می‌شوند. به همین دلیل تمامی وب‌سایت‌ها به‌صورت
                                 واکنش‌گرا طراحی می‌شوند و در تمامی دستگاه‌ها
@@ -209,13 +204,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="span"
-                                className="text-primary sm:mr-10"
+                                className="text-primary mr-0 sm:mr-10"
                                 text="چرا وب آرای ؟"
                             />
                             <SplitText
@@ -223,13 +217,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
+                                className="mx-auto mt-2 mr-0 text-4xl font-bold sm:mr-10"
                                 text="طراحی اختصاصی متناسب با برند شما"
                             />
                             <SplitText
@@ -237,13 +230,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={500}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 mr-0 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="هر کسب‌وکار هویت خاص خود را دارد و وب‌سایت باید
                                 بازتابی از آن باشد. ما از قالب‌های تکراری
                                 استفاده نمی‌کنیم و هر پروژه را بر اساس نیاز،
@@ -257,13 +249,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="span"
-                                className="text-primary sm:mr-10"
+                                className="text-primary mr-0 sm:mr-10"
                                 text="چرا وب آرای ؟"
                             />
                             <SplitText
@@ -271,13 +262,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={100}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="h2"
-                                className="mx-auto mt-2 text-4xl font-bold sm:mr-10"
+                                className="mx-auto mt-2 mr-0 text-4xl font-bold sm:mr-10"
                                 text="همراهی و پشتیبانی پس از تحویل"
                             />
                             <SplitText
@@ -285,13 +275,12 @@ export default function Home() {
                                 ease={"power3.out"}
                                 delay={500}
                                 duration={1}
-                                threshold={0.1}
                                 from={{ opacity: 0, y: 64 }}
                                 to={{ opacity: 1, y: 0 }}
                                 rootMargin="0"
                                 textAlign="right"
                                 tag="p"
-                                className="mx-auto mt-4 text-xl font-light sm:mr-10 sm:w-1/2"
+                                className="mx-auto mt-4 mr-0 text-xl font-light sm:mr-10 sm:w-1/2"
                                 text="پایان طراحی، آغاز مسیر رشد است. پس از تحویل
                                 وب‌سایت نیز کنار شما هستیم تا با پشتیبانی، آموزش
                                 و راهنمایی، بتوانید بیشترین بهره را از وب‌سایت

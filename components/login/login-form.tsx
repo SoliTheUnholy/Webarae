@@ -136,7 +136,7 @@ const LoginForm = () => {
             className="grid h-full items-center justify-center"
         >
             <Card className="w-[90vw] max-w-96 gap-2 rounded-4xl">
-                <CardHeader key={otp.toString()} >
+                <CardHeader key={otp.toString()}>
                     <CardTitle>
                         <SplitText
                             splitType="words"
@@ -168,7 +168,7 @@ const LoginForm = () => {
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
-                        <form className={`relative grid`}>
+                        <form className={`grid`}>
                             <FormField
                                 control={form.control}
                                 name="phone"
@@ -184,7 +184,7 @@ const LoginForm = () => {
                                                         .getValues("phone")
                                                         .match(
                                                             new RegExp(
-                                                                /^(\+98|0)?9\d{9}$/,
+                                                                /^(\+98|98|0)?9\d{9}$/,
                                                             ),
                                                         )
                                                 ) {
@@ -196,7 +196,7 @@ const LoginForm = () => {
                                                 autoFocus
                                                 type="number"
                                                 inputMode="numeric"
-                                                className="h-10 rounded-2xl text-center placeholder:text-center"
+                                                className="h-10 rounded-xl text-center placeholder:text-center"
                                                 placeholder="09xxxx1234"
                                                 {...field}
                                             />
@@ -236,14 +236,13 @@ const LoginForm = () => {
                                                     <InputOTPSlot index={4} />
                                                     <InputOTPSlot index={5} />
                                                     <Button
-                                                        size={"lg"}
                                                         style={{
                                                             pointerEvents:
                                                                 "auto",
                                                         }}
                                                         disabled={!resend}
                                                         variant={"ghost"}
-                                                        className="z-20 grow cursor-pointer rounded-2xl rounded-l-none border border-l-0"
+                                                        className="z-20 grow border-input  cursor-pointer rounded-xl rounded-l-none  border-l-0"
                                                         onClick={() => {
                                                             form.setValue(
                                                                 "otp",
@@ -253,52 +252,52 @@ const LoginForm = () => {
                                                                 -1,
                                                             );
                                                             setResend(false);
-                                                            try {
-                                                                fetch(
-                                                                    "https:///api/Sign/SendPhoneNumber",
-                                                                    {
-                                                                        method: "POST",
-                                                                        headers:
-                                                                            {
-                                                                                "Content-Type":
-                                                                                    "application/json",
-                                                                            },
-                                                                        body: JSON.stringify(
-                                                                            {
-                                                                                PhoneNumber:
-                                                                                    form.getValues(
-                                                                                        "phone",
-                                                                                    ),
-                                                                            },
-                                                                        ),
-                                                                    },
-                                                                ).then(
-                                                                    async (
-                                                                        response,
-                                                                    ) => {
-                                                                        if (
-                                                                            response.ok
-                                                                        ) {
-                                                                            setTimeRemaining(
-                                                                                initialTime,
-                                                                            );
-                                                                        } else {
-                                                                            setResend(
-                                                                                true,
-                                                                            );
-                                                                        }
-                                                                    },
-                                                                );
-                                                            } catch (error) {
-                                                                setResend(true);
-                                                                console.error(
-                                                                    "Error submitting data:",
-                                                                    error,
-                                                                );
-                                                            }
+                                                            // try {
+                                                            //     fetch(
+                                                            //         "https:///api/Sign/SendPhoneNumber",
+                                                            //         {
+                                                            //             method: "POST",
+                                                            //             headers:
+                                                            //                 {
+                                                            //                     "Content-Type":
+                                                            //                         "application/json",
+                                                            //                 },
+                                                            //             body: JSON.stringify(
+                                                            //                 {
+                                                            //                     PhoneNumber:
+                                                            //                         form.getValues(
+                                                            //                             "phone",
+                                                            //                         ),
+                                                            //                 },
+                                                            //             ),
+                                                            //         },
+                                                            //     ).then(
+                                                            //         async (
+                                                            //             response,
+                                                            //         ) => {
+                                                            //             if (
+                                                            //                 response.ok
+                                                            //             ) {
+                                                            //                 setTimeRemaining(
+                                                            //                     initialTime,
+                                                            //                 );
+                                                            //             } else {
+                                                            //                 setResend(
+                                                            //                     true,
+                                                            //                 );
+                                                            //             }
+                                                            //         },
+                                                            //     );
+                                                            // } catch (error) {
+                                                            //     setResend(true);
+                                                            //     console.error(
+                                                            //         "Error submitting data:",
+                                                            //         error,
+                                                            //     );
+                                                            // }
                                                         }}
                                                     >
-                                                        <span className="w-12 flex items-center justify-center">
+                                                        <span className="flex items-center justify-center">
                                                             {timeRemaining !=
                                                                 0 &&
                                                             timeRemaining !=
@@ -329,8 +328,7 @@ const LoginForm = () => {
                 </CardContent>
                 <CardFooter>
                     <Button
-                        size={"lg"}
-                        className="grow rounded-2xl font-semibold"
+                        className="grow rounded-xl font-semibold"
                         type="button"
                         onClick={(e) => {
                             e.preventDefault();

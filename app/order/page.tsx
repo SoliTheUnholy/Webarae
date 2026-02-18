@@ -231,37 +231,24 @@ const Orders = () => {
 
     /* ---------- NAVIGATION ---------- */
 
+    const [nav, setNav] = useState("next");
+    const [saved, setSaved] = useState("");
     const next = (label: string) => {
         setAnimate(false);
-        setTimeout(() => {
-            setAnswers((prev) => ({
-                ...prev,
-                [pages[step].key]: label,
-            }));
-            setStep((s) => s + 1);
-            setAnimate(true);
-        }, 1000);
+        setNav("next");
+        setSaved(label);
     };
 
     const back = () => {
-        if (!step) return;
         setAnimate(false);
-        setTimeout(() => {
-            setAnswers((prev) => {
-                const copy = { ...prev };
-                delete copy[pages[step - 1].key];
-                return copy;
-            });
-            setStep((s) => s - 1);
-            setAnimate(true);
-        }, 1000);
+        setNav("back");
     };
 
     /* ---------- UI ---------- */
 
     return (
         <AnimatedContent
-            duration={1.2}
+            duration={1}
             animateOpacity
             className="flex h-full w-full flex-col items-center"
         >
@@ -290,54 +277,137 @@ const Orders = () => {
                                             splitType="words"
                                             tag="p"
                                             text={pages[step].description}
-                                            delay={20}
+                                            delay={25}
                                         />
                                     </CardDescription>
                                 </AnimatedContent>
                             </CardHeader>
-
                             {/* OPTIONS */}
                             <CardContent className="grid gap-2">
-                                {pages[step].options.map((item, index) => (
-                                    <AnimatedContent
-                                        visible={animate}
-                                        disappearAfter={index * 0.1}
-                                        key={item.label}
-                                        direction="horizontal"
-                                        delay={index * 0.1}
-                                        className="grid"
-                                        animateOpacity
-                                    >
-                                        <Button
-                                            variant="outline"
-                                            className="flex h-auto justify-start gap-4 rounded-2xl text-right transition-all duration-500"
-                                            disabled={!animate}
-                                            onClick={() => next(item.label)}
-                                        >
-                                            <span className="text-primary text-2xl">
-                                                {index + 1}
-                                            </span>
+                                {pages[step].options.map((item, index) => {
+                                    if (
+                                        index + 1 ==
+                                        pages[step].options.length
+                                    ) {
+                                        return (
+                                            <AnimatedContent
+                                                visible={animate}
+                                                disappearAfter={index * 0.1}
+                                                key={item.label}
+                                                direction="horizontal"
+                                                delay={index * 0.1}
+                                                className="grid"
+                                                animateOpacity
+                                                onDisappearanceComplete={() => {
+                                                    if (nav == "next") {
+                                                        setAnswers((prev) => ({
+                                                            ...prev,
+                                                            [pages[step].key]:
+                                                                saved,
+                                                        }));
+                                                        setStep((s) => s + 1);
+                                                        setAnimate(true);
+                                                    } else {
+                                                        setAnswers((prev) => {
+                                                            const copy = {
+                                                                ...prev,
+                                                            };
+                                                            delete copy[
+                                                                pages[step - 1]
+                                                                    .key
+                                                            ];
+                                                            return copy;
+                                                        });
+                                                        setStep((s) => s - 1);
+                                                        setAnimate(true);
+                                                    }
+                                                }}
+                                            >
+                                                <Button
+                                                    variant="outline"
+                                                    className="flex h-auto justify-start gap-3 rounded-xl p-3 text-right transition-opacity duration-500"
+                                                    disabled={!animate}
+                                                    onClick={() => {
+                                                        next(item.label);
+                                                    }}
+                                                >
+                                                    <span className="text-primary text-2xl">
+                                                        {index + 1}
+                                                    </span>
 
-                                            <div className="flex flex-col gap-1">
-                                                <SplitText
-                                                    splitType="words"
-                                                    textAlign="right"
-                                                    tag="span"
-                                                    className="font-medium"
-                                                    text={item.label}
-                                                    delay={50 * index}
-                                                />
-                                                <SplitText
-                                                    splitType="words"
-                                                    tag="span"
-                                                    className="text-muted-foreground text-xs"
-                                                    text={item.description}
-                                                    delay={50 * index}
-                                                />
-                                            </div>
-                                        </Button>
-                                    </AnimatedContent>
-                                ))}
+                                                    <div className="flex flex-col gap-1">
+                                                        <SplitText
+                                                            splitType="words"
+                                                            textAlign="right"
+                                                            tag="span"
+                                                            className="font-medium"
+                                                            text={item.label}
+                                                            delay={25 * index}
+                                                        />
+                                                        <SplitText
+                                                            splitType="words"
+                                                            tag="span"
+                                                            className="text-muted-foreground text-xs"
+                                                            text={
+                                                                item.description
+                                                            }
+                                                            delay={
+                                                                25 * index + 25
+                                                            }
+                                                        />
+                                                    </div>
+                                                </Button>
+                                            </AnimatedContent>
+                                        );
+                                    } else {
+                                        return (
+                                            <AnimatedContent
+                                                visible={animate}
+                                                disappearAfter={index * 0.1}
+                                                key={item.label}
+                                                direction="horizontal"
+                                                delay={index * 0.1}
+                                                className="grid"
+                                                animateOpacity
+                                            >
+                                                <Button
+                                                    variant="outline"
+                                                    className="flex h-auto justify-start gap-3 rounded-xl p-3 text-right transition-opacity duration-500"
+                                                    disabled={!animate}
+                                                    onClick={() => {
+                                                        next(item.label);
+                                                    }}
+                                                >
+                                                    <span className="text-primary text-2xl">
+                                                        {index + 1}
+                                                    </span>
+
+                                                    <div className="flex flex-col gap-1">
+                                                        <SplitText
+                                                            splitType="words"
+                                                            textAlign="right"
+                                                            tag="span"
+                                                            className="font-medium"
+                                                            text={item.label}
+                                                            delay={25 * index}
+                                                        />
+                                                        <SplitText
+                                                            splitType="words"
+                                                            tag="span"
+                                                            className="text-muted-foreground text-xs"
+                                                            text={
+                                                                item.description
+                                                            }
+                                                            delay={
+                                                                25 * index + 25
+                                                            }
+                                                        />
+                                                    </div>
+                                                </Button>
+                                            </AnimatedContent>
+                                        );
+                                    }
+                                })}
                             </CardContent>
 
                             {/* FOOTER */}
@@ -363,10 +433,9 @@ const Orders = () => {
                                             </span>
                                         </div>
                                         <Button
-                                            size={"lg"}
                                             disabled={!animate}
                                             onClick={back}
-                                            className="h-10 rounded-2xl transition-all duration-500"
+                                            className="rounded-xl transition-all duration-500"
                                         >
                                             مرحله قبل
                                             <ArrowLeft />
@@ -409,7 +478,7 @@ const Orders = () => {
                                         delay={i * 0.1}
                                     >
                                         <div className="grid text-right">
-                                            <span className="text-muted text-xs">
+                                            <span className="text-muted-foreground text-xs">
                                                 {item.title}
                                             </span>
                                             <span>{answers[item.key]}</span>
@@ -428,10 +497,7 @@ const Orders = () => {
                                     </span>
                                 </span>
 
-                                <Button
-                                    size={"lg"}
-                                    className="w-full rounded-2xl"
-                                >
+                                <Button className="w-full rounded-xl">
                                     تکمیل سفارش
                                 </Button>
                             </CardFooter>

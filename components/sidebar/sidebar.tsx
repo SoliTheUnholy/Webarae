@@ -476,15 +476,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     aria-label="Main navigation header"
                 >
                     <AnimatedContent
-                        className="flex w-full items-center justify-between gap-2 p-6"
+                        className="flex w-full items-center justify-between gap-2 p-4 md:p-6"
                         distance={150}
                         direction="vertical"
                         reverse={true}
-                        duration={1.5}
+                        duration={1}
                         initialOpacity={0}
                         animateOpacity={true}
                         scale={1.5}
-                        threshold={0}
                         delay={0.1}
                     >
                         <div className="pointer-events-auto flex h-12 items-center justify-center gap-2 select-none">
